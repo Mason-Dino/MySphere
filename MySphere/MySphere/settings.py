@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-t53fj$q-*$j=c8nb&)w21lceh4^7%uw3t#4anu2a9!qy8czk1q
 DEBUG = True
 
 ALLOWED_HOSTS = [os.getenv("URL_TAILSCALE")]
-
+CSRF_TRUSTED_ORIGINS = [os.getenv("URL_ADMIN")]
 
 # Application definition
 
