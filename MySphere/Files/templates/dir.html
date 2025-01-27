@@ -6,10 +6,10 @@
     <title>Hello World</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>{{dir}}</h1>
     {% for file in files %}
         {% if file.1 == True %}
-            <p><a href="/files/home/{{file.2}}">{{file}}></a></p>
+            <p><a href="/files/home/{{file.3}}">{{file}}></a></p>
         {% else %}
             <p>{{file}}</p>
         {% endif %}
