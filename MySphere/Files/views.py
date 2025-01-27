@@ -44,10 +44,10 @@ def directory(request, path: str):
 
     for file in files:
         if os.path.isdir(file):
-            serverFiles.append([file, True, file.removeprefix(directory)])
+            serverFiles.append([file, True, file.removeprefix(root), file.removeprefix(root).replace("/", ".")])
 
         else:
-            serverFiles.append([file, False, file.removeprefix(directory)])
+            serverFiles.append([file, False, file.removeprefix(root)])
 
 
     context = {
