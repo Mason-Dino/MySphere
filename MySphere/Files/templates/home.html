@@ -9,10 +9,9 @@
 </head>
 <body>``
     <h1>Home</h1>
-    <img src="{% static 'icons/folder.png' %}" alt="folder">
     {% for file in files %}
         {% if file.1 == True %}
-            <p><a href="/files/home/{{file.2}}">{{file}}></a></p>
+            <p><img src="{% static 'icons/folder.png' %}" alt="folder" width="20px" height="20px"><a href="/files/home/{{file.2}}">{{file}}></a></p>
         {% else %}
             <p>{{file}}</p>
         {% endif %}
