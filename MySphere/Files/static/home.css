@@ -38,7 +38,9 @@ body {
 }
 
 .icon {
-    fill: var(--space-cadet)
+    display: flex;
+    fill: var(--timeber-wolf);
+    justify-content: center;
 }
 
 
