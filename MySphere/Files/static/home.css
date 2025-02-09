@@ -4,10 +4,15 @@
     --space-cadet: #2e294eff;
     --persian-green: #1b998bff;
     --timeber-wolf: #DAD6CB;
+    --ash-grey: #C8D3CF;
 }
 
 .folder {
     fill: var(--persian-green)
+}
+
+.icon {
+    fill: var(--space-cadet)
 }
 
 body {
@@ -15,5 +20,5 @@ body {
 }
 
 h1 {
-    color: var(--space-cadet)
+    color: var(--space-cadet);
 }
