@@ -1,7 +1,15 @@
-h1 {
-    color: blue
+:root {
+    --crimson: #d7263dff;
+    --giants-orange: #f46036ff;
+    --space-cadet: #2e294eff;
+    --persian-green: #1b998bff;
+    --pearl: #e3dcc2ff;
 }
 
 body {
-    background-color: red;
+    background-color: var(--pearl);
+}
+
+h1 {
+    color: blue
 }
