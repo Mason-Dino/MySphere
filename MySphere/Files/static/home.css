@@ -3,13 +3,17 @@
     --giants-orange: #f46036ff;
     --space-cadet: #2e294eff;
     --persian-green: #1b998bff;
-    --pearl: #e3dcc2ff;
+    --timeber-wolf: #DAD6CB;
+}
+
+.folder {
+    fill: var(--persian-green)
 }
 
 body {
-    background-color: var(--pearl);
+    background-color: var(--timeber-wolf);
 }
 
 h1 {
-    color: blue
+    color: var(--space-cadet)
 }
