@@ -48,7 +48,7 @@ body {
 }
 
 .folder-item { 
-
+    /*display: inline-block;*/
 }
 
 .folder-circle {
