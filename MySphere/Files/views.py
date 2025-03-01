@@ -4,6 +4,8 @@ from django.template import loader
 import os
 import glob
 
+import logging
+
 # Create your views here.
 
 def home(request):
@@ -82,9 +84,28 @@ def directory(request, path: str):
     
     return HttpResponse(template.render(context=context, request=request))
 
-def viewTXT(request, path: str):
+def viewTXT(request, path: str):    
+    logger = logging.getLogger("mylogger")
+    logging.basicConfig(filename="viewTXT.log")
+    logger.info("Whatever to log")
+    
+    logger.error(f"{path}")
+    
+    root = "/home/mason-server/"
+
     template = loader.get_template("view-txt.html")
     
+    with open(f"{root}{path}", "r") as f:
+        data = f.read()
+        
+    logger.error(f"{data}")
+    
+    data = data.replace("\n", "lineBreakHere")
+    
+    context = {
+        "data": data,
+        "path": path
+    }
     
     
-    return (HttpResponse(template.render(request=request)))
+    return (HttpResponse(template.render(context=context, request=request)))

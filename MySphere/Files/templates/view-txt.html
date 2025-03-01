@@ -18,7 +18,11 @@
     </div>
     
     <div class="main-content">
-        <p>Hello World</p>
+        <p id="output"></p>
     </div>
+    <script>
+        var output = document.getElementById("output")
+        output.innerHTML = `{{data}}`.replace("lineBreakHere", "<br>");
+    </script>
 </body>
 </html>
