@@ -7,6 +7,18 @@
     --ash-grey: #C8D3CF;
 }
 
+h1, h2, h3, h4, h5, h6, p, a {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
 body {
     background-color: var(--timeber-wolf);
     margin: 0px;
