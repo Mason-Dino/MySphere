@@ -100,7 +100,7 @@ def viewTXT(request, path: str):
         
     logger.error(f"{data}")
     
-    data = data.replace("\n", "lineBreakHere")
+    data = data.replace("\n", " lineBreakHere ")
     
     context = {
         "data": data,
