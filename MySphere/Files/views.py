@@ -17,10 +17,16 @@ def home(request):
 
     for file in files:
         if os.path.isdir(file):
-            serverFiles.append([file, True, file.removeprefix(directory)])
+            serverFiles.append([file, "folder", file.removeprefix(directory)])
+            
+        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".cc"):
+            serverFiles.append([file, "code", file.removeprefix(directory)])
+            
+        elif file.endswith(".txt"):
+            serverFiles.append([file, "txt", file.removeprefix(directory)])
 
         else:
-            serverFiles.append([file, False, file.removeprefix(directory)])
+            serverFiles.append([file, "other", file.removeprefix(directory)])
 
 
     context = {
