@@ -53,13 +53,25 @@ def directory(request, path: str):
     files = glob.glob(f"{directory}*")
 
     serverFiles = []
-
+            
     for file in files:
         if os.path.isdir(file):
-            serverFiles.append([file, True, file.removeprefix(root), file.removeprefix(root).replace("/", ".")])
+            serverFiles.append([file, "folder", file.removeprefix(directory), file.removeprefix(root).replace("/", ".")])
+            
+        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".cc"):
+            serverFiles.append([file, "code", file.removeprefix(directory)])
+            
+        elif file.endswith(".txt") or file.endswith(".pdf"):
+            serverFiles.append([file, "txt", file.removeprefix(directory)])
+            
+        elif file.endswith("mp4") or file.endswith(".mp3") or file.endswith(".mov"):
+            serverFiles.append([file, "movie", file.removeprefix(directory)])
+            
+        elif file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg") or file.endswith(".heif") or file.endswith(".svg"):
+            serverFiles.append([file, "img", file.removeprefix(directory)])
 
         else:
-            serverFiles.append([file, False, file.removeprefix(root)])
+            serverFiles.append([file, "other", file.removeprefix(directory)])
 
 
     context = {
