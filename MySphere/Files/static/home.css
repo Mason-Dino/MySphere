@@ -29,12 +29,36 @@ body {
     padding-top: 20px;
 }
 
+.sidebar-content {
+    margin: 20px;
+}
+
+
+.sidebar-content-item {
+
+}
+
+
 .main-content {
     margin-left: 220px;
 }
 
-.folder {
+.folder-icon {
     fill: var(--persian-green)
+}
+
+.folder-item { 
+
+}
+
+.folder-circle {
+    border-radius: 100%; 
+    background-color: blue; 
+    width: 30px; 
+    height: 30px; 
+    display: flex; 
+    align-items: center; 
+    text-align: center;
 }
 
 .icon {
@@ -46,4 +70,16 @@ body {
 
 h1 {
     color: var(--space-cadet);
+}
+
+p {
+    display: flex;
+    justify-items: center;
+    color: var(--crimson);
+}
+
+a:-webkit-any-link {
+    color: var(--space-cadet);
+    text-decoration: none;
+    cursor: pointer;
 }
