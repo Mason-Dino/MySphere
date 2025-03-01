@@ -81,3 +81,10 @@ def directory(request, path: str):
 
     
     return HttpResponse(template.render(context=context, request=request))
+
+def viewTXT(request, path: str):
+    template = loader.get_template("view-txt.html")
+    
+    
+    
+    return (HttpResponse(template.render(request=request)))
