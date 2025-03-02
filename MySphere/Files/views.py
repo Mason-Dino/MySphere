@@ -80,7 +80,8 @@ def directory(request, path: str):
 
     context = {
         "files": serverFiles,
-        "dir": directory
+        "dir": directory,
+        "dir_short": directory.removeprefix(root)
     }
 
     
