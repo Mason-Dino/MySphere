@@ -198,6 +198,14 @@ def showImg(request, path: str, file: str):
     
     return FileResponse(img, content_type=kind)
 
+def showOther(request, path: str, file: str):
+    path = path.replace(".", "/")
+    img = open(f"{path}{file}", "rb")
+    
+    kind = filetype.guess_mime(f"{path}{file}")
+    
+    return FileResponse(img, content_type=kind)
+
 def downloadTxt(request, path: str, file: str):
     path = path.replace(".", "/")
     
