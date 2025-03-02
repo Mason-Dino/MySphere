@@ -59,6 +59,11 @@ body {
     fill: var(--timeber-wolf);
 }
 
+.back {
+    fill: var(--space-cadet);
+    cursor: pointer;
+}
+
 .folder-circle {
     border-radius: 100%; 
     background-color: var(--space-cadet); 
