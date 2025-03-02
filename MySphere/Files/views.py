@@ -19,22 +19,22 @@ def home(request):
 
     for file in files:
         if os.path.isdir(file):
-            serverFiles.append([file, "folder", file.removeprefix(directory)])
+            serverFiles.append([file, "folder", file.removeprefix(directory), file.removeprefix(directory).replace("/", ".")])
             
-        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".cc"):
-            serverFiles.append([file, "code", file.removeprefix(directory)])
+        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json"):
+            serverFiles.append([file, "code", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".txt") or file.endswith(".pdf"):
-            serverFiles.append([file, "txt", file.removeprefix(directory)])
+            serverFiles.append([file, "txt", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith("mp4") or file.endswith(".mp3") or file.endswith(".mov"):
-            serverFiles.append([file, "movie", file.removeprefix(directory)])
+            serverFiles.append([file, "movie", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg") or file.endswith(".heif") or file.endswith(".svg"):
-            serverFiles.append([file, "img", file.removeprefix(directory)])
+            serverFiles.append([file, "img", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
 
         else:
-            serverFiles.append([file, "other", file.removeprefix(directory)])
+            serverFiles.append([file, "other", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
 
 
     context = {
@@ -111,3 +111,6 @@ def viewTXT(request, path: str, file: str):
     
     
     return (HttpResponse(template.render(context=context, request=request)))
+
+def viewMovie(request, path: str, file: str):
+    pass
