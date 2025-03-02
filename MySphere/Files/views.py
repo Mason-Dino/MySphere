@@ -31,7 +31,7 @@ def home(request):
         elif os.path.isdir(file):
             serverFiles.append([file, "folder", file.removeprefix(directory), file.removeprefix(directory).replace("/", ".")])
             
-        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json"):
+        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json") or file.endswith(".sh"):
             serverFiles.append([file, "code", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".txt") or file.endswith(".pdf"):
@@ -75,7 +75,7 @@ def directory(request, path: str):
         if os.path.isdir(file):
             serverFiles.append([file, "folder", file.removeprefix(directory), file.removeprefix(root).replace("/", ".")])
             
-        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json"):
+        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json") or file.endswith(".sh"):
             serverFiles.append([file, "code", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".txt") or file.endswith(".pdf"):
