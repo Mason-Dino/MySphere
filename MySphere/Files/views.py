@@ -104,7 +104,8 @@ def viewTXT(request, path: str, file: str):
     
     context = {
         "data": data,
-        "path": path
+        "path": path,
+        "filename": file
     }
     
     
