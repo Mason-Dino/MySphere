@@ -9,5 +9,6 @@ urlpatterns = [
     path('', views.home, name='home-2'),
     path('home/<str:path>', views.directory, name='directory'),
     path('home/txt/<str:path>/<str:file>', views.viewTXT, name="txt-view"),
-    path('home/movie/<str:path>/<str:file>', views.viewMovie, name="movie-view")
+    path('home/movie/<str:path>/<str:file>', views.viewMovie, name="movie-view"),
+    path('movie/play/<str:path>/<str:file>', views.playMovie, name="movie-play")
 ]
