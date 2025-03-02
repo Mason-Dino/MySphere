@@ -98,3 +98,12 @@ a:-webkit-any-link {
     text-decoration: none;
     cursor: pointer;
 }
+
+.video-button {
+    background-color: var(--space-cadet);
+    color: var(--timeber-wolf);
+    border-radius: 10px;
+    border-style: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
