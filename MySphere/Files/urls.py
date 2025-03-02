@@ -12,4 +12,6 @@ urlpatterns = [
     path('home/movie/<str:path>/<str:file>', views.viewMovie, name="movie-view"),
     path('movie/play/<str:path>/<str:file>', views.playMovie, name="movie-play"),
     path('text/download/<str:path>/<str:file>', views.downloadTxt, name="download-text"),
+    path('audio/play/<str:path>/<str:file>', views.playAudio, name="audio-play"),
+    path('home/audio/<str:path>/<str:file>', views.viewAudio, name="audio-view")
 ]
