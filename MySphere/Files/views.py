@@ -107,6 +107,7 @@ def viewTXT(request, path: str, file: str):
     context = {
         "data": data,
         "path": path,
+        "path_dot": path.replace("/", "."),
         "filename": file
     }
     
@@ -132,3 +133,10 @@ def playMovie(request, path: str, file: str):
     video = open(f"{path}{file}", 'rb')
         
     return FileResponse(video, content_type='video/webm')
+
+def downloadTxt(request, path: str, file: str):
+    path = path.replace(".", "/")
+    
+    video = open(f"{path}{file}", 'rb')
+        
+    return FileResponse(video, content_type='text')
