@@ -22,9 +22,6 @@
             {{dir_short}}
         </h1>
         {% for file in files %}
-            <script>
-                console.log("{{file}}")
-            </script>
             {% if file.1 == "folder" %}
                 <div class="folder-item">
                     <div style="display: inline-block;">
