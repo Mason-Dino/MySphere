@@ -45,6 +45,8 @@ def home(request):
 
 def directory(request, path: str):
     template = loader.get_template('dir.html')
+    logger = logging.getLogger("directory")
+    logging.basicConfig(filename="viewTXT.log")
 
     root = "/home/mason-server/"
     path = path.replace(".", "/")
@@ -60,20 +62,20 @@ def directory(request, path: str):
         if os.path.isdir(file):
             serverFiles.append([file, "folder", file.removeprefix(directory), file.removeprefix(root).replace("/", ".")])
             
-        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".cc"):
-            serverFiles.append([file, "code", file.removeprefix(directory)])
+        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json"):
+            serverFiles.append([file, "code", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".txt") or file.endswith(".pdf"):
-            serverFiles.append([file, "txt", file.removeprefix(directory)])
+            serverFiles.append([file, "txt", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith("mp4") or file.endswith(".mp3") or file.endswith(".mov"):
-            serverFiles.append([file, "movie", file.removeprefix(directory)])
+            serverFiles.append([file, "movie", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg") or file.endswith(".heif") or file.endswith(".svg"):
-            serverFiles.append([file, "img", file.removeprefix(directory)])
+            serverFiles.append([file, "img", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
 
         else:
-            serverFiles.append([file, "other", file.removeprefix(directory)])
+            serverFiles.append([file, "other", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
 
 
     context = {
@@ -84,23 +86,21 @@ def directory(request, path: str):
     
     return HttpResponse(template.render(context=context, request=request))
 
-def viewTXT(request, path: str):    
-    logger = logging.getLogger("mylogger")
+def viewTXT(request, path: str, file: str):    
+    logger = logging.getLogger("viewTXT")
     logging.basicConfig(filename="viewTXT.log")
     logger.info("Whatever to log")
     
     logger.error(f"{path}")
     
-    root = "/home/mason-server/"
+    path = path.replace(".", "/")
 
     template = loader.get_template("view-txt.html")
     
-    with open(f"{root}{path}", "r") as f:
-        data = f.read()
-        
-    logger.error(f"{data}")
+    logger.info(f"{file}")
     
-    data = data.replace("\n", " lineBreakHere ")
+    with open(f"{path}{file}", "r") as f:
+        data = f.read()
     
     context = {
         "data": data,
