@@ -117,13 +117,10 @@ def viewMovie(request, path: str, file: str):
     template = loader.get_template("view-movie.html")
     
     path = path.replace(".", "/")
-    
-    with open(f"{path}{file}", "rb") as video:
-        videoContent = video.read()
         
     context = {
-        "video": videoContent,
-        "filename": file
+        "filename": file,
+        "path": path.replace("/", ".")
     }
     
     return HttpResponse(template.render(context=context, request=request))
