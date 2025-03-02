@@ -85,6 +85,7 @@ p {
     display: flex;
     justify-items: center;
     color: var(--crimson);
+    white-space: pre;
 }
 
 a:-webkit-any-link {
