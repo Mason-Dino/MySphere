@@ -19,7 +19,7 @@
     
     <div class="main-content">
         <h1>
-            <svg class="back" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+            <svg class="back" onclick="back()" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
             {{filename}}
         </h1>
         <pre id="output"></pre>
@@ -27,6 +27,10 @@
     <script>
         var output = document.getElementById("output")
         output.innerHTML = `{{data}}`;
+
+        function back() {
+            window.history.back();
+        }
     </script>
 </body>
 </html>
