@@ -10,6 +10,9 @@ import logging
 # Create your views here.
 
 def home(request):
+    logger = logging.getLogger("home")
+    logging.basicConfig(filename="viewTXT.log")
+    
     template = loader.get_template('home.html')
 
     directory = "/home/mason-server/"
@@ -17,9 +20,15 @@ def home(request):
     files = glob.glob(f"{directory}*")
 
     serverFiles = []
+    
+    
 
     for file in files:
-        if os.path.isdir(file):
+        logger.error(f"{file}")
+        if os.path.isdir(file) and file == "/home/mason-server/usb":
+            pass
+        
+        elif os.path.isdir(file):
             serverFiles.append([file, "folder", file.removeprefix(directory), file.removeprefix(directory).replace("/", ".")])
             
         elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json"):
