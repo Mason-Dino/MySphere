@@ -153,11 +153,23 @@ def viewAudio(request, path: str, file: str):
     
     return HttpResponse(template.render(context=context, request=request))
 
+def viewImg(request, path:str, file: str):
+    template = loader.get_template("view-img.html")
+    
+    path = path.replace(".", "/")
+        
+    context = {
+        "filename": file,
+        "path": path.replace("/", ".")
+    }
+    
+    return HttpResponse(template.render(context=context, request=request))
+
 def playMovie(request, path: str, file: str):
     path = path.replace(".", "/")
     video = open(f"{path}{file}", 'rb')
         
-    return FileResponse(video, content_type='video/webm')
+    return FileResponse(video, content_type='video/mp4')
 
 def playAudio(request, path: str, file: str):
     path = path.replace(".", "/")

@@ -13,5 +13,6 @@ urlpatterns = [
     path('movie/play/<str:path>/<str:file>', views.playMovie, name="movie-play"),
     path('text/download/<str:path>/<str:file>', views.downloadTxt, name="download-text"),
     path('audio/play/<str:path>/<str:file>', views.playAudio, name="audio-play"),
-    path('home/audio/<str:path>/<str:file>', views.viewAudio, name="audio-view")
+    path('home/audio/<str:path>/<str:file>', views.viewAudio, name="audio-view"),
+    path('image/view/<str:path>/<str:file>', views.viewImg, name="img-view")
 ]
