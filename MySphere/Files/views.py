@@ -166,6 +166,18 @@ def viewImg(request, path:str, file: str):
     
     return HttpResponse(template.render(context=context, request=request))
 
+def viewOther(request, path:str, file: str):
+    template = loader.get_template("view-other.html")
+    
+    path = path.replace(".", "/")
+        
+    context = {
+        "filename": file,
+        "path": path.replace("/", ".")
+    }
+    
+    return HttpResponse(template.render(context=context, request=request))
+
 def playMovie(request, path: str, file: str):
     path = path.replace(".", "/")
     video = open(f"{path}{file}", 'rb')
