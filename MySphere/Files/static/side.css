@@ -23,6 +23,10 @@
     padding-top: 20px;
 }
 
+.link-side {
+    color: var(--timeber-wolf);
+}
+
 .sidebar-content {
     margin: 20px;
 }
