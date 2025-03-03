@@ -6,5 +6,8 @@ import os
 import glob
 
 # Create your views here.
-def home():
-    return "Hello World"
+def home(requests):
+    template = loader.get_template('home.html')
+    print("he")
+    
+    return HttpResponse(template.render(request=requests))
