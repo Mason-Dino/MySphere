@@ -19,5 +19,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('files/', include("Files.urls")),
+    path('usb/', include('USB.urls')),
     path('admin/', admin.site.urls),
 ]
