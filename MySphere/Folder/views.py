@@ -27,3 +27,13 @@ def home(requests):
     }
     
     return HttpResponse(template.render(context=context, request=requests))
+
+def makeFolder(requests):
+    logger = logging.getLogger("make-folder")
+    logging.basicConfig(filename="viewTXT.log")
+    
+    if requests.method == "POST":
+        logger.error("Success")
+    
+    else:
+        logger.error("Fail")
