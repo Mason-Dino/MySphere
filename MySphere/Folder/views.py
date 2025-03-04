@@ -17,8 +17,8 @@ def home(requests):
     directories = []
 
     for dir in glob.glob(f"/home/mason-server/*"):
-        if os.path.isdir(dir):
-            directories.append(dir)
+        if os.path.isdir(dir) and dir != "/home/mason-server/usb":
+            directories.append([dir, dir.removeprefix("/home/mason-server/")])
 
     logger.error(f"{directories}")
 

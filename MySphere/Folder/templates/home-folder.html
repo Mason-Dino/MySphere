@@ -39,7 +39,10 @@
         <h1>
             Home
         </h1>
-        
+        {% for dir in directories %}
+            <p>{{dir}}</p>
+
+        {% endfor %}
     </div>
 </body>
 </html>
