@@ -9,7 +9,7 @@ import logging
 
 # Create your views here.
 def home(requests):
-    template = loader.get_template('home.html')
+    template = loader.get_template('home-folder.html')
     logger = logging.getLogger("home")
     logging.basicConfig(filename="viewTXT.log")
 
