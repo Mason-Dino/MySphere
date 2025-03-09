@@ -81,6 +81,10 @@
             let folder = document.getElementById("folder-name").value
             folder = String(folder).replaceAll(" ", "-")
 
+            if (folder == '') {
+                alert("Folder not made.")
+                return
+            }
             
             fetch("https://mason-server.tailff82ee.ts.net/folder/make-folder/", {
                 method: "POST",

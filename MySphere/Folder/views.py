@@ -41,6 +41,8 @@ def makeFolder(requests):
         data = json.loads((requests.body).decode("utf-8"))
         logger.error(f"{data}")
         
+        os.makedirs(f"{data['path']}{data['name']}")
+        
         return JsonResponse({
             "code": 200,
             "message": "folder made"
