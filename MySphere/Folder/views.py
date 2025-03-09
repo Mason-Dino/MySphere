@@ -26,7 +26,8 @@ def home(requests):
 
     context = {
         "directories": directories,
-        "path": "/home/mason-server/"
+        "path": "/home/mason-server/",
+        "shortPath": "Home"
     }
     
     return HttpResponse(template.render(context=context, request=requests))
@@ -44,9 +45,12 @@ def dir(requests, path: str):
             logger.error(f"{dir.removeprefix('/home/mason-server/').replace('/', '.')}")
             directories.append([dir, dir.removeprefix(f"/home/mason-server/{path}/"), dir.removeprefix("/home/mason-server/").replace("/", ".")])
     
+    shortPath = path.split("/")[len(path.split("/")) - 1]
+    
     context = {
         "directories": directories,
-        "path": f"/home/mason-server/{path}/"
+        "path": f"/home/mason-server/{path}/",
+        "shortPath": shortPath
     }
     
     return HttpResponse(template.render(context=context, request=requests))
