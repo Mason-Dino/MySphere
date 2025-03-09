@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Files',
     'USB',
-    'Folder'
+    'Folder',
+    'Upload'
 ]
 
 MIDDLEWARE = [

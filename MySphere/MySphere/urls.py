@@ -21,5 +21,6 @@ urlpatterns = [
     path('files/', include("Files.urls")),
     path('usb/', include('USB.urls')),
     path('folder/', include('Folder.urls')),
+    path('upload/', include("Upload.urls")),
     path('admin/', admin.site.urls),
 ]
