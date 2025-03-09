@@ -7,7 +7,7 @@ import glob
 
 # Create your views here.
 def home(requests):
-    template = loader.get_template('home.html')
+    template = loader.get_template('home-usb.html')
     print("he")
     
     return HttpResponse(template.render(request=requests))

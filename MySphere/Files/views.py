@@ -14,7 +14,7 @@ def home(request):
     logger = logging.getLogger("home")
     logging.basicConfig(filename="viewTXT.log")
     
-    template = loader.get_template('home.html')
+    template = loader.get_template('home-files.html')
 
     directory = "/home/mason-server/"
 
