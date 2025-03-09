@@ -46,7 +46,7 @@ def dir(requests, path: str):
     
     context = {
         "directories": directories,
-        "path": f"/home/mason-server/{path}"
+        "path": f"/home/mason-server/{path}/"
     }
     
     return HttpResponse(template.render(context=context, request=requests))
