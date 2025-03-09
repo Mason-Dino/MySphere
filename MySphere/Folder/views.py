@@ -25,7 +25,8 @@ def home(requests):
     logger.error(f"{directories}")
 
     context = {
-        "directories": directories
+        "directories": directories,
+        "path": "/home/mason-server/"
     }
     
     return HttpResponse(template.render(context=context, request=requests))
