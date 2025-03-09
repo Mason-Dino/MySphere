@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.http import FileResponse
 from django.template import loader
 import os
 import glob
 
 import logging
+import json
 
 # Create your views here.
 def home(requests):
@@ -34,11 +36,14 @@ def makeFolder(requests):
     
     logger.error(f"{requests.method}")
     if requests.method == "POST":
-        logger.error("Success")
-        data = requests.POST
+        #data = dict(requests.body)
+        data = json.loads((requests.body).decode("utf-8"))
+        logger.error(f"{data}")
         
-        return HttpResponse("Data received successfully!")
+        return JsonResponse({
+            "code": 200,
+            "message": "folder made"
+        })
     
     else:
-        logger.error("Fail")
         return HttpResponse("Data failed!")
