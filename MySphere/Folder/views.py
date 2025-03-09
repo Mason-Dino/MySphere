@@ -32,8 +32,13 @@ def makeFolder(requests):
     logger = logging.getLogger("make-folder")
     logging.basicConfig(filename="viewTXT.log")
     
+    logger.error(f"{requests.method}")
     if requests.method == "POST":
         logger.error("Success")
+        data = requests.POST
+        
+        return HttpResponse("Data received successfully!")
     
     else:
         logger.error("Fail")
+        return HttpResponse("Data failed!")

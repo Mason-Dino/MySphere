@@ -57,6 +57,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://mason-server.tailff82ee.ts.net']
+
 ROOT_URLCONF = 'MySphere.urls'
 
 TEMPLATES = [
