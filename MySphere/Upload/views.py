@@ -17,3 +17,16 @@ def home(requests):
 
     
     return HttpResponse(template.render(request=requests))
+
+def fileUpload(requests):
+    logger = logging.getLogger("file-upload")
+    logging.basicConfig(filename="viewTXT.log")
+    
+    if requests.method == "POST":
+        logger.error("TEst")
+        logger.error(f"file: {requests.FILES}")
+        logger.error(f"file: {requests.body}")
+        
+        return JsonResponse({
+            "code": 200
+        })
