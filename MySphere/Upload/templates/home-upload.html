@@ -44,6 +44,18 @@
     <div class="main-content">
         <h1 style="user-select: none;">
             Upload
+        </h1>
+        <input type="file" id="upload-file">
+        <button class="video-button" onclick="uploadFile()">
+            Upload
+        </button>
     </div>
+    <script>
+        function uploadFile() {
+            var fileInput = document.getElementById("upload-file")
+
+            console.log(fileInput.files)
+        }
+    </script>
 </body>
 </html>
