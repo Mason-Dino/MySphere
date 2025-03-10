@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from . import views
 
 urlpatterns = [
     path('files/', include("Files.urls")),
@@ -23,4 +24,5 @@ urlpatterns = [
     path('folder/', include('Folder.urls')),
     path('upload/', include("Upload.urls")),
     path('admin/', admin.site.urls),
+    path('', views.home)
 ]
