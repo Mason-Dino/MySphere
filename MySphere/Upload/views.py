@@ -19,16 +19,43 @@ def home(requests):
     logger = logging.getLogger("home-upload")
     logging.basicConfig(filename="viewTXT.log")
     
+    directories = []
+
+    for dir in glob.glob(f"/home/mason-server/*"):
+        if os.path.isdir(dir) and dir != "/home/mason-server/usb":
+            directories.append([dir, dir.removeprefix("/home/mason-server/"), dir.removeprefix("/home/mason-server/").replace("/", ".")])
+    
+    logger.error(f"{directories}")
+    
     context = {
-        "path": None
+        "directories": directories,
+        "path": "/home/mason-server/"
     }
     
-    return HttpResponse(template.render(request=requests))
+    return HttpResponse(template.render(context=context, request=requests))
+
+def dir(requests, path: str):
+    template = loader.get_template('home-upload.html')
+    logger = logging.getLogger("home-upload")
+    logging.basicConfig(filename="viewTXT.log")
     
-def handleUpload(f):
-    with open("/home/mason-sever/name.txt", "wb+") as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
+    path = path.replace(".", "/")
+    
+    directories = []
+    
+    for dir in glob.glob(f"/home/mason-server/{path}/*"):
+        if os.path.isdir(dir):
+            logger.error(f"{dir.removeprefix('/home/mason-server/').replace('/', '.')}")
+            directories.append([dir, dir.removeprefix(f"/home/mason-server/{path}/"), dir.removeprefix("/home/mason-server/").replace("/", ".")])
+    
+    shortPath = path.split("/")[len(path.split("/")) - 1]
+    
+    context = {
+        "directories": directories,
+        "path": f"/home/mason-server/{path}/",
+    }
+    
+    return HttpResponse(template.render(context=context, request=requests))
 
 def fileUpload(requests):
     logger = logging.getLogger("file-upload")
