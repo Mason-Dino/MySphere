@@ -19,6 +19,10 @@ def home(requests):
     logger = logging.getLogger("home-upload")
     logging.basicConfig(filename="viewTXT.log")
     
+    context = {
+        "path": None
+    }
+    
     return HttpResponse(template.render(request=requests))
     
 def handleUpload(f):
