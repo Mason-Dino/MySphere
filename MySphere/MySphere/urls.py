@@ -24,5 +24,6 @@ urlpatterns = [
     path('folder/', include('Folder.urls')),
     path('upload/', include("Upload.urls")),
     path('admin/', admin.site.urls),
-    path('', views.home)
+    path('', views.home, name='home'),
+    path('success/', views.success, name='success')
 ]

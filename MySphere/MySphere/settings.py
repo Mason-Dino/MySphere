@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'Files',
     'USB',
     'Folder',
-    'Upload'
+    'Upload',
+    'MySphere'
 ]
 
 MIDDLEWARE = [
