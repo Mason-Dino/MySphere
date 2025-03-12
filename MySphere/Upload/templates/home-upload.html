@@ -95,6 +95,7 @@
             
             formData.append("file", fileInput.files[0]); // Append file
             formData.append("csrfmiddlewaretoken", csrftoken); // CSRF token
+            formData.append("path", "{{path}}")
 
             fetch("/upload/file-upload/", {  // Make sure this matches your Django URL
                 method: "POST",

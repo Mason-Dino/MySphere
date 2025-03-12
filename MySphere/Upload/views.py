@@ -67,7 +67,9 @@ def fileUpload(requests):
         
         uploadFile = requests.FILES['file']
         
-        filePath = os.path.join(UPLOAD_DIR, uploadFile.name)
+        logger.error(f"test: {requests.POST}")
+        
+        filePath = os.path.join(requests.POST['path'], uploadFile.name)
 
         logger.error(f"File uploading: {filePath}")
         
