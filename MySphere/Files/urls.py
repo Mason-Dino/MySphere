@@ -18,4 +18,5 @@ urlpatterns = [
     path('image/show/<str:path>/<str:file>', views.showImg, name="img-show"),
     path('other/view/<str:path>/<str:file>', views.viewOther, name="other-view"),
     path('other/show/<str:path>/<str:file>', views.showOther, name="other-view"),
+    path('delete/', views.deleteFile, name="delete-file")
 ]
