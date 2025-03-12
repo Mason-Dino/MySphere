@@ -88,5 +88,5 @@ def fileUpload(requests):
         
         
         return JsonResponse({
-            "code": 202
+            "code": 200
         })
