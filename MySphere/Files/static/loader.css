@@ -1,0 +1,22 @@
+:root {
+    --crimson: #d7263dff;
+    --giants-orange: #f46036ff;
+    --space-cadet: #2e294eff;
+    --persian-green: #1b998bff;
+    --timeber-wolf: #DAD6CB;
+    --ash-grey: #C8D3CF;
+}
+
+.loader {
+    border: .5vw solid var(--timeber-wolf); /* Light grey */
+    border-top: .5vw solid var(--space-cadet); /* Blue */
+    border-radius: 50%;
+    width: 3vw;
+    height: 3vw;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

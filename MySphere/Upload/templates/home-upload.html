@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'home.css' %}" type="text/css" rel="stylesheet">
     <link href="{% static 'side.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'loader.css'%}" type="text/css" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
@@ -43,13 +44,17 @@
     
     <div class="main-content">
         <h1 style="user-select: none;">
-            Upload
+            <svg class="back" onclick="back()" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+            Upload: {{shortPath}}
         </h1>
         <input type="file" id="upload-file" required>
         <button class="video-button" onclick="uploadFile()">
             Upload
         </button>
         <br><br>
+        <div style="display: none;" id="loader">
+            <div class="loader" style="margin: auto;"></div>
+        </div>
         {% for dir in directories %}
             <div class="folder-item">
                 <div style="display: inline-block;">
@@ -97,6 +102,8 @@
             formData.append("csrfmiddlewaretoken", csrftoken); // CSRF token
             formData.append("path", "{{path}}")
 
+            document.getElementById("loader").style = "display: block;"
+
             fetch("/upload/file-upload/", {  // Make sure this matches your Django URL
                 method: "POST",
                 body: formData,
@@ -104,9 +111,16 @@
             .then(response => response.json())
             .then(json => {
                 console.log(json);
-                alert("File Uploaded")
+                alert("File Uploaded");
+                document.getElementById("loader").style = "display: none;"
             })
             .catch(error => console.error("Error:", error));
+        }
+
+        function back() {
+            if ("{{back}}" == "history") {
+                window.history.back()
+            }
         }
     </script>
 </body>
