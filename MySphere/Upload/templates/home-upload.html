@@ -45,7 +45,7 @@
         <h1 style="user-select: none;">
             Upload
         </h1>
-        <input type="file" id="upload-file">
+        <input type="file" id="upload-file" required>
         <button class="video-button" onclick="uploadFile()">
             Upload
         </button>
@@ -71,21 +71,24 @@
         const csrftoken = getCookie('csrftoken');
 
         function uploadFile() {
-            var fileInput = document.getElementById("upload-file")
+            var fileInput = document.getElementById("upload-file");
+            var formData = new FormData();
+            
+            if (fileInput.files.length === 0) {
+                alert("Please select a file before uploading.");
+                return;
+            }
+            
+            formData.append("file", fileInput.files[0]); // Append file
+            formData.append("csrfmiddlewaretoken", csrftoken); // CSRF token
 
-            console.log(fileInput.files)
-            fetch("https://mason-server.tailff82ee.ts.net/upload/file-upload/", {
+            fetch("/upload/file-upload/", {  // Make sure this matches your Django URL
                 method: "POST",
-                body: JSON.stringify({
-                    files: fileInput.files
-                }),
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    'X-CSRFToken': csrftoken,
-                }
-                })
-                .then((response) => response.json())
-                .then((json) => console.log(json));
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(error => console.error("Error:", error));
         }
     </script>
 </body>
