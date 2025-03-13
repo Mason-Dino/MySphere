@@ -112,6 +112,12 @@
         {% endfor %}
     </div>
     <script>
+        console.log(document.location.href)
+
+        if ((document.location.href).endsWith("?refresh=true")) {
+            document.location = String(document.location.href).replace("?refresh=true", "")
+        }
+
         function back() {
             window.history.back()
         }

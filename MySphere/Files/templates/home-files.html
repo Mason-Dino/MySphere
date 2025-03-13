@@ -133,5 +133,10 @@
             {% endif %}
         {% endfor %}
     </div>
+    <script>
+        if ((document.location.href).endsWith("?refresh=true")) {
+            document.location = String(document.location.href).replace("?refresh=true", "")
+        }
+    </script>
 </body>
 </html>
