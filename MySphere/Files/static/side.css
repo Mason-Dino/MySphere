@@ -23,6 +23,7 @@
     padding-top: 20px;
 }
 
+
 .link-side {
     color: var(--timeber-wolf);
 }
@@ -35,3 +36,29 @@
 .sidebar-content-item {
     display: block;
 }
+
+.sidebar-mobile {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    bottom: -10px;
+    height: 10lvh;
+    background-color: var(--space-cadet);
+}
+
+@media only screen and (max-width: 550px) {
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar-mobile {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 550px) {
+    .sidebar-mobile {
+        display: none;
+    }
+}
+

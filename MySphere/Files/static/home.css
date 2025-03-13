@@ -109,4 +109,8 @@ a:-webkit-any-link {
     border: 2px solid var(--space-cadet);
 }
 
-
+@media only screen and (max-width: 550px) {
+    .main-content {
+        margin: 20px;
+    }    
+}
