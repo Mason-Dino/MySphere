@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import FileResponse
+from django.http import JsonResponse
 from django.template import loader
 import os
 import glob
 
 import logging
 import filetype
+import json
 
 # Create your views here.
 
@@ -212,3 +214,23 @@ def downloadTxt(request, path: str, file: str):
     video = open(f"{path}{file}", 'rb')
         
     return FileResponse(video, content_type='text')
+
+def deleteFile(requests):
+    logger = logging.getLogger("viewTXT")
+    logging.basicConfig(filename="viewTXT.log")
+    
+    if requests.method == "POST":
+        data = json.loads((requests.body).decode("utf-8"))
+        logger.error(f"Output: {data}")
+        
+        path = str(data["path"]).replace(".", "/")
+        file = str(data["file"])
+        
+        os.remove(os.path.join(path, file))
+        
+        return JsonResponse({
+            "code": 200
+        })
+    
+    else:
+        return HttpResponse("Only Post Request")
