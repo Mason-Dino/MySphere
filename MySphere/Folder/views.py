@@ -80,4 +80,20 @@ def makeFolder(requests):
         return HttpResponse("Data failed!")
     
 def deleteFolder(requests):
-    pass
+    logger = logging.getLogger("delete-folder")
+    logging.basicConfig(filename="viewTXT.log")
+    
+    if requests.method == "POST":
+        data = json.loads((requests.body).decode("utf-8"))
+        
+        path = str(data["path"]).replace(".", "/")
+        logger.error(f"{path}")
+        
+        os.rmdir(path)
+        
+        return JsonResponse({
+            "code": 200
+        })
+    
+    else:
+        return HttpResponse("Only post request")
