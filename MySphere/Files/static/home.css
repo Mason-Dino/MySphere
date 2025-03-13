@@ -3,6 +3,7 @@
     --giants-orange: #f46036ff;
     --space-cadet: #2e294eff;
     --persian-green: #1b998bff;
+    --vivid-cerulean: #00A9FF;
     --timeber-wolf: #DAD6CB;
     --ash-grey: #C8D3CF;
 }
@@ -39,9 +40,17 @@ body {
     cursor: pointer;
 }
 
+.folder-color {background-color: var(--space-cadet);}
+.txt-color {background-color: var(--giants-orange);}
+.code-color {background-color: var(--crimson);}
+.movie-color {background-color: var(--persian-green);}
+.audio-color {background-color: var(--persian-green);}
+.img-color {background-color: var(--vivid-cerulean);}
+.other-color {background-color: var(--space-cadet);}
+
 .folder-circle {
     border-radius: 100%; 
-    background-color: var(--space-cadet); 
+    /*background-color: var(--space-cadet); */
     opacity: 50%;
     width: 30px; 
     height: 30px; 

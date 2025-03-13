@@ -70,7 +70,7 @@
             {% if file.1 == "folder" %}
                 <div class="folder-item">
                     <div style="display: inline-block;">
-                        <div class="folder-circle">
+                        <div class="folder-circle folder-color">
                             <svg class="folder-icon" style="margin: auto;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="20px"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"/></svg>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
             {% elif file.1 == "txt"%}
                 <div class="folder-item">
                     <div style="display: inline-block;">
-                        <div class="folder-circle">
+                        <div class="folder-circle txt-color">
                             <svg class="folder-icon" style="margin: auto;" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"/></svg>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
             {% elif file.1 == "code"%}
                 <div class="folder-item">
                     <div style="display: inline-block;">
-                        <div class="folder-circle">
+                        <div class="folder-circle code-color">
                             <svg class="folder-icon" style="margin: auto"; xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z"/></svg>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
             {% elif file.1 == "movie"%}
                 <div class="folder-item">
                     <div style="display: inline-block;">
-                        <div class="folder-circle">
+                        <div class="folder-circle movie-color">
                             <svg class="folder-icon" style="margin: auto;" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m160-800 80 160h120l-80-160h80l80 160h120l-80-160h80l80 160h120l-80-160h120q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800Zm0 240v320h640v-320H160Zm0 0v320-320Z"/></svg>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
             {% elif file.1 == "audio"%}
                 <div class="folder-item">
                     <div style="display: inline-block;">
-                        <div class="folder-circle">
+                        <div class="folder-circle audio-color">
                             <svg class="folder-icon" style="margin: auto;" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M400-120q-66 0-113-47t-47-113q0-66 47-113t113-47q23 0 42.5 5.5T480-418v-422h240v160H560v400q0 66-47 113t-113 47Z"/></svg>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
             {% elif file.1 == "img"%}
                 <div class="folder-item">
                     <div style="display: inline-block;">
-                        <div class="folder-circle">
+                        <div class="folder-circle img-color">
                             <svg class="folder-iocn" style="margin: auto;" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z"/></svg>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
             {% else %}
                 <div class="folder-item">
                     <div style="display: inline-block;">
-                        <div class="folder-circle">
+                        <div class="folder-circle other-color">
                             <svg class="folder-icon" style="margin: auto;" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q41-45 62.5-100.5T800-480q0-98-54.5-179T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h240q17 0 28.5 11.5T600-440v120h40q26 0 47 15.5t29 40.5Z"/></svg>
                         </div>
                     </div>
