@@ -94,6 +94,10 @@
     </div>
     {% csrf_token %}
     <script>
+        if ((document.location.href).endsWith("?refresh=true")) {
+            document.location = String(document.location.href).replace("?refresh=true", "")
+        }
+        
         function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -127,6 +131,10 @@
                 .then((response) => response.json())
                 .then((json) => {
                     console.log(json);
+                    var oldURL = document.referrer;
+                    oldURL += "?refresh=true"
+
+                    window.location.href = oldURL
                 })
             }
         }
