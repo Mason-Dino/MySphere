@@ -28,7 +28,8 @@ def home(requests):
         "directories": directories,
         "path": "/home/mason-server/",
         "shortPath": "Home",
-        "back": "stay"
+        "back": "stay",
+        "root": True
     }
     
     return HttpResponse(template.render(context=context, request=requests))
@@ -52,7 +53,8 @@ def dir(requests, path: str):
         "directories": directories,
         "path": f"/home/mason-server/{path}/",
         "shortPath": shortPath,
-        "back": "history"
+        "back": "history",
+        "root": False
     }
     
     return HttpResponse(template.render(context=context, request=requests))
