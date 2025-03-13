@@ -8,5 +8,5 @@ import glob
 
 # Create your views here.
 def home(requests):
-    print("this is some code")
-    return HttpResponse("Process Page")
+    template = loader.get_template("home-process.html")
+    return HttpResponse(template.render(request=requests))
