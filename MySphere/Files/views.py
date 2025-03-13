@@ -9,6 +9,7 @@ import glob
 import logging
 import filetype
 import json
+import psutil
 
 # Create your views here.
 
@@ -24,6 +25,9 @@ def home(request):
 
     serverFiles = []
     
+    diskUsage = psutil.disk_usage('/')
+    percent = diskUsage.percent
+    strPercent = str(int(percent))
     
 
     for file in files:
@@ -54,7 +58,9 @@ def home(request):
 
 
     context = {
-        "files": serverFiles
+        "files": serverFiles,
+        "percent": percent,
+        "strPercent": strPercent
     }
 
     return HttpResponse(template.render(context=context, request=request))
