@@ -76,9 +76,13 @@ def fileUpload(requests):
         filePath = os.path.join(requests.POST['path'], uploadFile.name)
 
         logger.error(f"File uploading: {filePath}")
+        try:
+            file = open(filePath, 'x')
+            file.close()
+            
+        except:
+            pass
         
-        file = open(filePath, 'x')
-        file.close()
         logger.error("check 2")
         with open(filePath, "wb") as f:
             for chunk in uploadFile.chunks():
