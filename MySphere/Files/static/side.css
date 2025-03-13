@@ -38,7 +38,8 @@
 }
 
 .sidebar-mobile {
-    display: inline-flex;
+    display: none;
+    text-align: center;
     position: fixed;
     width: 100vw;
     bottom: -10px;
@@ -48,10 +49,9 @@
 
 .sidebar-mobile-item {
     display: inline-flex;
-    width: 25%;
-    background-color: var(--crimson);
-    margin: 5px;
+    width: 20%;
     height: 100px;
+    margin: auto
 }
 
 @media only screen and (max-width: 550px) {
@@ -60,13 +60,13 @@
     }
 
     .sidebar-mobile {
-        display: block;
+        display: inline-flex;
     }
 }
 
 @media only screen and (min-width: 550px) {
     .sidebar-mobile {
-        display: flex;
+        display: none;
     }
 }
 
