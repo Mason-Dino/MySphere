@@ -38,12 +38,20 @@
 }
 
 .sidebar-mobile {
-    display: none;
+    display: inline-flex;
     position: fixed;
     width: 100vw;
     bottom: -10px;
     height: 10lvh;
     background-color: var(--space-cadet);
+}
+
+.sidebar-mobile-item {
+    display: inline-flex;
+    width: 25%;
+    background-color: var(--crimson);
+    margin: 5px;
+    height: 100px;
 }
 
 @media only screen and (max-width: 550px) {
@@ -58,7 +66,7 @@
 
 @media only screen and (min-width: 550px) {
     .sidebar-mobile {
-        display: none;
+        display: flex;
     }
 }
 
