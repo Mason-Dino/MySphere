@@ -23,6 +23,7 @@ urlpatterns = [
     path('usb/', include('USB.urls')),
     path('folder/', include('Folder.urls')),
     path('upload/', include("Upload.urls")),
+    path('process/', include("Process.urls")),
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('success/', views.success, name='success')

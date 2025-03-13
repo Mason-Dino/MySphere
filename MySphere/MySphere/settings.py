@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'USB',
     'Folder',
     'Upload',
+    'Process',
     'MySphere'
 ]
 
