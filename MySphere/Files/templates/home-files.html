@@ -38,10 +38,15 @@
                     <h2 style="display: inline-flex; margin-left: 5px;" class="link-side">USB</h2>
                 </a>
             </div>
-            <div>
-                <h4 style="margin-bottom: 3px;">
-                    Current Usage: {{strPercent}}%
-                </h4>
+            <div class="progress-item">
+                <div>
+                    <h5 style="margin-bottom: 3px;">
+                        Current Usage:
+                        <span style="float: right;">
+                            {{strPercent}}%
+                        </span>
+                    </h5>
+                </div>
                 <progress value="{{strPercent}}" max="100">{{percent}}</progress>
             </div>
         </div>
