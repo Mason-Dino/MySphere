@@ -31,7 +31,6 @@ def home(request):
     
 
     for file in files:
-        logger.error(f"{file}")
         if os.path.isdir(file) and file == "/home/mason-server/usb":
             pass
         
