@@ -8,6 +8,7 @@ import glob
 
 import logging
 import json
+import shutil
 
 # Create your views here.
 def home(requests):
@@ -89,7 +90,7 @@ def deleteFolder(requests):
         path = str(data["path"]).replace(".", "/")
         logger.error(f"{path}")
         
-        os.rmdir(path)
+        shutil.rmtree(path=path)
         
         return JsonResponse({
             "code": 200
