@@ -48,10 +48,12 @@
 }
 
 .sidebar-mobile-item {
-    display: inline-flex;
+    display: inline-block;
+    text-align: center;
     width: 20%;
     height: 100px;
-    margin: auto
+    margin: auto;
+    margin-top: 2%;
 }
 
 @media only screen and (max-width: 550px) {
