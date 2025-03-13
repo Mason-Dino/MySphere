@@ -78,3 +78,6 @@ def makeFolder(requests):
     
     else:
         return HttpResponse("Data failed!")
+    
+def deleteFolder(requests):
+    pass

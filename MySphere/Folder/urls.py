@@ -8,5 +8,6 @@ urlpatterns = [
     path('home/', views.home, name='home-1'),
     path('', views.home, name='home-2'),
     path('make-folder/', views.makeFolder, name="make-folder"),
-    path('home/<str:path>', views.dir, name='dir-folder')
+    path('delete-folder/', views.deleteFolder, name="delete-folder"),
+    path('home/<str:path>', views.dir, name='dir-folder'),
 ]
