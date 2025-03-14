@@ -19,13 +19,19 @@ def home(requests):
     result = subprocess.run(["pm2", "jlist"], capture_output=True, text=True)
     result = json.loads(result.stdout)
     
-    for item in result:
-        logger.error(f"{item}")
-        logger.error(f"{item['name']}")
-        logger.error(f"{item['pm_id']}")
-        logger.error(f"{item['pm2_env']['status']}")
-        logger.error(f"created: {item['pm2_env']['created_at']} uptime: {item['pm2_env']['pm_uptime']}")
-        logger.error(f"{item['pm2_env']['restart_time']}")
-        logger.error(f"{item['pm2_env']['PWD']}")
+    data = []
+    
+    for i in range(len(result)):
+        data.append({})
+        
+        data[i]['name'] = result[i]['name']
+        data[i]['id'] = result[i]['pm_id']
+        data[i]['status'] = result[i]['pm2_env']['status']
+        data[i]['created'] = result[i]['pm2_env']['created_at']
+        data[i]['uptime'] = result[i]['pm2_env']['pm_uptime']
+        data[i]['restart'] = result[i]['pm2_env']['restart_time']
+        data[i]['location'] = result[i]['pm2_env']['PWD']
+        
+    logger.error(f"{data}")
     
     return HttpResponse(template.render(request=requests))
