@@ -31,6 +31,7 @@ def home(request):
     
 
     for file in files:
+        logger.error(f"{file}: {filetype.guess_mime(f'{file}')}")
         if os.path.isdir(file) and file == "/home/mason-server/usb":
             pass
         
@@ -40,8 +41,11 @@ def home(request):
         elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json") or file.endswith(".sh"):
             serverFiles.append([file, "code", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
-        elif file.endswith(".txt") or file.endswith(".pdf"):
+        elif file.endswith(".txt") or filetype.guess_mime(f"{file}") == "text/plain":
             serverFiles.append([file, "txt", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
+            
+        elif file.endswith(".pdf"):
+            serverFiles.append([file, "txt-pdf", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith("mp4") or file.endswith(".mov"):
             serverFiles.append([file, "movie", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
@@ -86,8 +90,11 @@ def directory(request, path: str):
         elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json") or file.endswith(".sh"):
             serverFiles.append([file, "code", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
-        elif file.endswith(".txt") or file.endswith(".pdf"):
+        elif file.endswith(".txt") or filetype.guess_mime(f"{file}") == "text/plain":
             serverFiles.append([file, "txt", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
+            
+        elif file.endswith(".pdf"):
+            serverFiles.append([file, "txt-pdf", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith("mp4") or file.endswith(".mov"):
             serverFiles.append([file, "movie", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
