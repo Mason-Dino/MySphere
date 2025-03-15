@@ -53,3 +53,12 @@ def home(requests):
     }
     
     return HttpResponse(template.render(context=context, request=requests))
+
+def pm2Update(requests):
+    if requests.method == "POST":
+        return JsonResponse({
+            "code": 200
+        })
+        
+    else:
+        return HttpResponse("only post")
