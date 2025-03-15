@@ -8,6 +8,8 @@ import glob
 import logging
 
 from datetime import datetime
+import time
+import math
 import subprocess
 import json
 import pytz
@@ -33,10 +35,16 @@ def home(requests):
         data[i]['id'] = result[i]['pm_id']
         data[i]['status'] = result[i]['pm2_env']['status']
         data[i]['created'] = datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
-        data[i]['uptime'] = datetime.fromtimestamp(result[i]['pm2_env']['pm_uptime']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
+        
+        uptime = (datetime.fromtimestamp(time.time()).astimezone(timezone) - datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone))
+        data[i]['uptime'] = f"{round(uptime.seconds/3600, 2)} hours"
+        
+        #data[i]['uptime'] = datetime.fromtimestamp(result[i]['pm2_env']['pm_uptime']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
         data[i]['restart'] = result[i]['pm2_env']['restart_time']
         data[i]['location'] = result[i]['pm2_env']['PWD']
         
+    
+    
         
     logger.error(f"{data}")
     
