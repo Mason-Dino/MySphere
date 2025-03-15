@@ -41,7 +41,7 @@ def home(requests):
         
         #data[i]['uptime'] = datetime.fromtimestamp(result[i]['pm2_env']['pm_uptime']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
         data[i]['restart'] = result[i]['pm2_env']['restart_time']
-        data[i]['location'] = result[i]['pm2_env']['PWD']
+        data[i]['location'] = str(result[i]['pm2_env']['PWD']).removeprefix('/home/mason-server/')
         
     
     
