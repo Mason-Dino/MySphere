@@ -31,7 +31,6 @@ def home(request):
     
 
     for file in files:
-        logger.error(f"{file}: {filetype.guess_mime(f'{file}')}")
         if os.path.isdir(file) and file == "/home/mason-server/usb":
             pass
         
@@ -144,6 +143,18 @@ def viewTXT(request, path: str, file: str):
     
     return (HttpResponse(template.render(context=context, request=request)))
 
+def viewPDF(request, path: str, file: str):
+    template = loader.get_template("view-pdf.html")
+    
+    path = path.replace(".", "/")
+        
+    context = {
+        "filename": file,
+        "path": path.replace("/", ".")
+    }
+    
+    return HttpResponse(template.render(context=context, request=request))
+
 def viewMovie(request, path: str, file: str):
     template = loader.get_template("view-movie.html")
     
@@ -220,12 +231,22 @@ def showOther(request, path: str, file: str):
     
     return FileResponse(img, content_type=kind)
 
+def showPDF(request, path: str, file: str):
+    path = path.replace(".", "/")
+    pdf = open(f"{path}{file}", "rb")
+    
+    kind = filetype.guess_mime(f"{path}{file}")
+    
+    return FileResponse(pdf, content_type=kind)
+
+
 def downloadTxt(request, path: str, file: str):
     path = path.replace(".", "/")
     
     video = open(f"{path}{file}", 'rb')
         
     return FileResponse(video, content_type='text')
+
 
 def deleteFile(requests):
     logger = logging.getLogger("viewTXT")
