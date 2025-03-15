@@ -79,13 +79,13 @@
             {{shortPath}}
             {% if root == False %}
                 <span style="float: right; margin-right: 20px;">
-                    <svg onclick="deleteFolder()" class="back" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                    <svg onclick="deleteFolder('{{path}}', '{{shortPath}}')" class="back" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
                 </span>
             {% endif %}
             <!--there is going to be a delete button for all path but the root path-->
         </h1>
         <input type="text" id="folder-name" class="text-input">
-        <button class="video-button" onclick="makeFolder()">
+        <button class="video-button" onclick="makeFolder('{{path}}')">
             Make Folder
         </button>
         <br><br>
@@ -104,77 +104,10 @@
         {% endfor %}
     </div>
     {% csrf_token %}
+    <script src="{% static 'folder.js' %}"></script>
     <script>
         if ((document.location.href).endsWith("?refresh=true")) {
             document.location = String(document.location.href).replace("?refresh=true", "")
-        }
-        
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-
-        const csrftoken = getCookie('csrftoken');
-
-        function deleteFolder() {
-            if (confirm("Do you want to delete {{shortPath}} folder")) {
-                fetch("https://mason-server.tailff82ee.ts.net/folder/delete-folder/", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        path: "{{path}}"
-                    }),
-                    headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    'X-CSRFToken': csrftoken,
-                    }
-                })
-                .then((response) => response.json())
-                .then((json) => {
-                    console.log(json);
-                    var oldURL = document.referrer;
-                    oldURL += "?refresh=true"
-
-                    window.location.href = oldURL
-                })
-            }
-        }
-
-        function makeFolder() {
-            let folder = document.getElementById("folder-name").value
-            folder = String(folder).replaceAll(" ", "-")
-
-            if (folder == '') {
-                alert("Folder not made.")
-                return
-            }
-            
-            fetch("https://mason-server.tailff82ee.ts.net/folder/make-folder/", {
-                method: "POST",
-                body: JSON.stringify({
-                    path: "{{path}}",
-                    name: folder
-                }),
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                    'X-CSRFToken': csrftoken,
-                }
-                })
-                .then((response) => response.json())
-                .then((json) => {
-                    console.log(json);
-                    location.reload();
-                });
         }
 
         function back() {  
