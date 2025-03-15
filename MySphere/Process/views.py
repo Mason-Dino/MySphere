@@ -56,6 +56,20 @@ def home(requests):
 
 def pm2Update(requests):
     if requests.method == "POST":
+        data = json.loads((requests.body).decode("utf-8"))
+        
+        if data['task'] == "stop":
+            pass
+        
+        elif data['task'] == "restart":
+            pass
+        
+        else:
+            return JsonResponse({
+                "code": 404,
+                "message": "unknown task"
+            })
+        
         return JsonResponse({
             "code": 200
         })
