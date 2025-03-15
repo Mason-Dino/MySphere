@@ -108,7 +108,11 @@
                     </h4>
                     <div class="process-buttons">
                         <button class="process-work-button process-restart" onclick="restart('{{item.id}}')">Restart</button>
+                        {% if item.status == 'stopped' %}
+                        <button class="process-work-button process-start" onclick="start('{{item.id}}')">Start</button>
+                        {% else %}
                         <button class="process-work-button process-stop" onclick="stop('{{item.id}}')">Stop</button>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
@@ -158,6 +162,25 @@
                 method: "POST",
                 body: JSON.stringify({
                     task: "stop",
+                    id: pid
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    'X-CSRFToken': csrftoken,
+                }
+                })
+                .then((response) => response.json())
+                .then((json) => {
+                    console.log(json);
+                    location.reload();
+                });
+        }
+
+        function start(pid) {            
+            fetch("https://mason-server.tailff82ee.ts.net/process/pm2/update/", {
+                method: "POST",
+                body: JSON.stringify({
+                    task: "start",
                     id: pid
                 }),
                 headers: {

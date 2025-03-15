@@ -180,6 +180,7 @@ progress::-webkit-progress-value {
 
 .process-restart { background-color: var(--giants-orange); }
 .process-stop { background-color: var(--crimson); }
+.process-start {background-color: var(--persian-green)}
 
 .online {color: var(--persian-green);}
 .offline {color: var(--crimson);}

@@ -59,10 +59,13 @@ def pm2Update(requests):
         data = json.loads((requests.body).decode("utf-8"))
         
         if data['task'] == "stop":
-            pass
+            result = subprocess.run(["pm2", "stop", f"{int(data['id'])}"], capture_output=True, text=True)
         
         elif data['task'] == "restart":
-            pass
+            result = subprocess.run(["pm2", "restart", f"{int(data['id'])}"], capture_output=True, text=True)
+            
+        elif data['task'] == "start":
+            result = subprocess.run(["pm2", "start", f"{int(data['id'])}"], capture_output=True, text=True)
         
         else:
             return JsonResponse({
