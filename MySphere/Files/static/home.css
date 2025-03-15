@@ -146,7 +146,6 @@ progress::-webkit-progress-value {
 
 .process-item {
     width: 200px;
-    height: 30lvh;
     margin: 10px;
     padding: 10px 20px;
     border-radius: 10px;
@@ -164,6 +163,23 @@ progress::-webkit-progress-value {
     margin-bottom: 10px;
     color: var(--timeber-wolf)
 }
+
+.process-buttons {
+    text-align: center;
+}
+
+.process-work-button {
+    width: 40%;
+    color: var(--timeber-wolf);
+    border-radius: 10px;
+    border-style: none;
+    padding: 7px 15px;
+    margin: 10px 8px 0px 8px;
+    cursor: pointer;
+}
+
+.process-restart { background-color: var(--giants-orange); }
+.process-stop { background-color: var(--crimson); }
 
 .online {color: var(--persian-green);}
 .offline {color: var(--crimson);}
