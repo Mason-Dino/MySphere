@@ -77,6 +77,13 @@
         <h1>
             Process Dashboard
         </h1>
+        <div class="process-parent">
+            {% for item in data %}
+                <div class="process-item">
+                    <p>{{item.name}}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

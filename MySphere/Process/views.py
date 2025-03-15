@@ -34,4 +34,8 @@ def home(requests):
         
     logger.error(f"{data}")
     
-    return HttpResponse(template.render(request=requests))
+    context = {
+        "data": data
+    }
+    
+    return HttpResponse(template.render(context=context, request=requests))
