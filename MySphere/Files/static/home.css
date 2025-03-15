@@ -31,6 +31,12 @@ body {
     margin-left: 220px;
 }
 
+.folder-item {
+    white-space: nowrap; 
+    text-overflow: clip; 
+    overflow: hidden;
+}
+
 .folder-icon {
     fill: var(--timeber-wolf);
 }
