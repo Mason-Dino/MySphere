@@ -7,8 +7,11 @@ import os
 import glob
 import logging
 
+from datetime import datetime
 import subprocess
 import json
+import pytz
+
 
 # Create your views here.
 def home(requests):
@@ -21,16 +24,19 @@ def home(requests):
     
     data = []
     
+    timezone = pytz.timezone('US/Central')
+    
     for i in range(len(result)):
         data.append({})
         
         data[i]['name'] = result[i]['name']
         data[i]['id'] = result[i]['pm_id']
         data[i]['status'] = result[i]['pm2_env']['status']
-        data[i]['created'] = result[i]['pm2_env']['created_at']
-        data[i]['uptime'] = result[i]['pm2_env']['pm_uptime']
+        data[i]['created'] = datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
+        data[i]['uptime'] = datetime.fromtimestamp(result[i]['pm2_env']['pm_uptime']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
         data[i]['restart'] = result[i]['pm2_env']['restart_time']
         data[i]['location'] = result[i]['pm2_env']['PWD']
+        
         
     logger.error(f"{data}")
     
