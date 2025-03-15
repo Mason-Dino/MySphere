@@ -145,17 +145,35 @@ progress::-webkit-progress-value {
 }
 
 .process-item {
-    width: 30%;
+    width: 200px;
     height: 30lvh;
     margin: 10px;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 10px;
+    /*box-shadow: 5px 5px 5px #888888;*/
 
     background-color: var(--space-cadet);
 }
 
+.process-item h3 {
+    color: var(--timeber-wolf);
+}
+
+.process-item h4 {
+    margin-top: 5px;
+    color: var(--timeber-wolf)
+}
+
+.online {color: var(--persian-green);}
+.offline {color: var(--crimson);}
+.other {color: var(--timeber-wolf)}
+
 @media only screen and (max-width: 550px) {
     .main-content {
         margin: 20px;
-    }    
+    }
+    
+    .process-item {
+        width: 80%;
+    }
 }
