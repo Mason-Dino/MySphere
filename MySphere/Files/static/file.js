@@ -16,13 +16,13 @@ function getCookie(name) {
 
 const csrftoken = getCookie('csrftoken');
 
-function deleteFile() {
-    if (confirm("Do you want to delete {{filename}}?")) {
+function deleteFile(path, filename) {
+    if (confirm(`Do you want to delete ${filename}?`)) {
         fetch("https://mason-server.tailff82ee.ts.net/files/delete/", {
             method: "POST",
             body: JSON.stringify({
-                path: "{{path}}",
-                file: "{{filename}}"
+                path: path,
+                file: filename
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
