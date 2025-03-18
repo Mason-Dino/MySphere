@@ -73,7 +73,7 @@ def fileUpload(requests):
         
         logger.error(f"test: {requests.POST}")
         
-        filePath = os.path.join(requests.POST['path'], uploadFile.name)
+        filePath = os.path.join(requests.POST['path'], str(uploadFile.name).replace(" ", "-"))
 
         logger.error(f"File uploading: {filePath}")
         try:
@@ -82,7 +82,7 @@ def fileUpload(requests):
             
         except:
             pass
-        
+    
         logger.error("check 2")
         with open(filePath, "wb") as f:
             for chunk in uploadFile.chunks():
