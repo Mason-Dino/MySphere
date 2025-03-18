@@ -6,6 +6,7 @@ import os
 import glob
 import subprocess
 import logging
+import json
 
 # Create your views here.
 def getValidUSB():
@@ -53,8 +54,25 @@ def getValidUSB():
                 os.removedirs(mount_point)
             except:
                 pass
+
+    stored = {}
+
+    for i in range(len(validUSB)):
+        stored[i] = {
+            "name": validUSB[i],
+            "mountPoint": f"/home/mason-server/usb-{validUSB[i]}"
+        }
+    
+    with open("stored-usb.json", "w") as f:
+        json.dumps(stored, indent=4)
             
     return validUSB
+
+def getStoredUSB():
+    with open("stored-usb.json", "r") as f:
+        data = f.read()
+        
+    return data
 
 
 
@@ -62,7 +80,7 @@ def home(requests):
     template = loader.get_template('home-usb.html')
     
     context = {
-        "usb": getValidUSB()
+        "usb": getStoredUSB()
     }
     
     return HttpResponse(template.render(context=context, request=requests))
