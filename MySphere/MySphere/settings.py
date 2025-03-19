@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'Folder',
     'Upload',
     'Process',
+    'Editor',
     'MySphere'
 ]
 

@@ -24,6 +24,7 @@ urlpatterns = [
     path('folder/', include('Folder.urls')),
     path('upload/', include("Upload.urls")),
     path('process/', include("Process.urls")),
+    path('edit/', include('Editor.urls')),
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('success/', views.success, name='success')
