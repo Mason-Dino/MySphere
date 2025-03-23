@@ -13,3 +13,8 @@ def home(requests):
     template = loader.get_template('home-edit.html')
     
     return HttpResponse(template.render(request=requests))
+
+def test(requests):
+    template = loader.get_template('test.html')
+    
+    return HttpResponse(template.render(request=requests))
