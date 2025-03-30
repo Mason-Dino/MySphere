@@ -21,7 +21,22 @@ def home(requests):
     return HttpResponse(template.render(request=requests))
 
 def editFile(requests, file):
-    pass
+    template = loader.get_template('file-edit.html')
+    
+    try:
+        os.makedirs("/home/mason-server/Editor")
+    except:
+        pass
+    
+    with open(f"/home/mason-server/Editor/{file}") as f:
+        content = f.read()
+    
+    context = {
+        "filename": file,
+        "content": content
+    }
+    
+    return HttpResponse(template.render(context=context, request=requests))
 
 def saveFile(requests):
     logger = logging.getLogger("save-file")

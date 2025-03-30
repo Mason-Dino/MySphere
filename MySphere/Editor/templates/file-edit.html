@@ -67,12 +67,12 @@
         <h1>
             Editor
         </h1>
-        <input type="text" id="file-name" class="text-input">
+        <input type="text" id="file-name" class="text-input" value="{{filename}}">
         <button class="video-button" onclick="saveFile()">
             Save
         </button>
         <br><br>
-        <textarea id="editor">#!/bin/bash</textarea>
+        <textarea id="editor">{{content}}</textarea>
         <br><br><br>
     </div>
     <div class="sidebar-mobile">
@@ -151,7 +151,6 @@
             var filename = document.getElementById("file-name").value;
             filename = filename.replaceAll(".", "-");
             filename = filename.replaceAll(" ", "-");
-            filename = `${filename}.sh`
 
             content = editor.getValue()
             
