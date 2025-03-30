@@ -19,6 +19,9 @@ def home(requests):
     
     return HttpResponse(template.render(request=requests))
 
+def saveFile(requests):
+    pass
+
 def test(requests):
     template = loader.get_template('test.html')
     
