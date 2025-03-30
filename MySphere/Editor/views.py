@@ -12,6 +12,11 @@ import json
 def home(requests):
     template = loader.get_template('home-edit.html')
     
+    try:
+        os.makedirs("/home/mason-server/Editor")
+    except:
+        pass
+    
     return HttpResponse(template.render(request=requests))
 
 def test(requests):

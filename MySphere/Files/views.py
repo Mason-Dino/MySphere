@@ -132,12 +132,17 @@ def viewTXT(request, path: str, file: str):
     
     with open(f"{path}{file}", "r") as f:
         data = f.read()
+        
+    editFile = False
+    if path == "/home/mason-server/Editor/":
+        editFile = True
     
     context = {
         "data": data,
         "path": path,
         "path_dot": path.replace("/", "."),
-        "filename": file
+        "filename": file,
+        "editFile": editFile
     }
     
     
