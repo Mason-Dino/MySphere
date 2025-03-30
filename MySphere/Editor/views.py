@@ -30,7 +30,7 @@ def saveFile(requests):
         data = json.loads((requests.body).decode("utf-8"))
         logger.error(f"{data}")
         
-        if os.path.exists(f"/home/mason-server/Editor{data['filename']}") == True:
+        if os.path.exists(f"/home/mason-server/Editor/{data['filename']}") == True:
             return JsonResponse({
                 "code": 400,
                 "message": "File already exists"
@@ -38,7 +38,7 @@ def saveFile(requests):
         
         with open(f"/home/mason-server/Editor/{data['filename']}", "w") as f:
             for line in str(data["content"]).splitlines():
-                f.write(line)
+                f.write(f"{line}\n")
         
         return JsonResponse({
             "code": 200,
