@@ -20,6 +20,9 @@ def home(requests):
     
     return HttpResponse(template.render(request=requests))
 
+def editFile(requests, file):
+    pass
+
 def saveFile(requests):
     logger = logging.getLogger("save-file")
     logging.basicConfig(filename="viewTXT.log")
@@ -35,6 +38,28 @@ def saveFile(requests):
                 "code": 400,
                 "message": "File already exists"
             })
+        
+        with open(f"/home/mason-server/Editor/{data['filename']}", "w") as f:
+            for line in str(data["content"]).splitlines():
+                f.write(f"{line}\n")
+        
+        return JsonResponse({
+            "code": 200,
+            "message": "File Saves"
+        })
+    
+    else:
+        return HttpResponse("Data failed!")
+    
+def editSaveFile(requests):
+    logger = logging.getLogger("save-file")
+    logging.basicConfig(filename="viewTXT.log")
+    
+    logger.error(f"{requests.method}")
+    if requests.method == "POST":
+        #data = dict(requests.body)
+        data = json.loads((requests.body).decode("utf-8"))
+        logger.error(f"{data}")
         
         with open(f"/home/mason-server/Editor/{data['filename']}", "w") as f:
             for line in str(data["content"]).splitlines():
