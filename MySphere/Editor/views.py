@@ -88,7 +88,23 @@ def editSaveFile(requests):
     else:
         return HttpResponse("Data failed!")
 
-def test(requests):
-    template = loader.get_template('test.html')
+def runFile(requests):
+    logger = logging.getLogger("save-file")
+    logging.basicConfig(filename="viewTXT.log")
     
-    return HttpResponse(template.render(request=requests))
+    logger.error(f"{requests.method}")
+    if requests.method == "POST":
+        #data = dict(requests.body)
+        data = json.loads((requests.body).decode("utf-8"))
+        logger.error(f"{data}")
+        
+        value = os.system(f"sh /home/mason-server/Editor/{data['filename']}")
+        logger.error(f"{value}")
+        
+        return JsonResponse({
+            "code": 200,
+            "result": value
+        })
+    
+    else:
+        return HttpResponse("Data failed!")

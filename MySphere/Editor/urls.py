@@ -9,5 +9,6 @@ urlpatterns = [
     path('', views.home, name='home-2'),
     path('file/<str:file>', views.editFile, name='code-edit-test'),
     path('saveFile/', views.saveFile, name='save-file'),
-    path('edit-saveFile/', views.editSaveFile, name='save-file')
+    path('edit-saveFile/', views.editSaveFile, name='save-file'),
+    path('runFile/', views.runFile, name="run-file")
 ]

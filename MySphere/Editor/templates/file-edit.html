@@ -67,9 +67,12 @@
         <h1>
             Editor
         </h1>
-        <input type="text" id="file-name" class="text-input" value="{{filename}}">
+        <input type="text" id="file-name" class="text-input" value="{{filename}}" disabled>
         <button class="video-button" onclick="saveFile()">
             Save
+        </button>
+        <button class="video-button" style="margin-left: 12px;" onclick="runFile()">
+            Run
         </button>
         <br><br>
         <textarea id="editor">{{content}}</textarea>
@@ -127,7 +130,7 @@
             }
         });
 
-        editor.setSize("75%", 300);
+        editor.setSize("85%", 300);
 
         function getCookie(name) {
             let cookieValue = null;
@@ -169,6 +172,34 @@
             .then((json) => {
                 console.log(json);
                 alert(json['message'])
+            });
+        }
+
+        function runFile() {
+            var filename = document.getElementById("file-name").value;
+
+            content = editor.getValue()
+            
+
+            fetch("https://mason-server.tailff82ee.ts.net/edit/runFile/", {
+            method: "POST",
+            body: JSON.stringify({
+                filename: filename
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'X-CSRFToken': csrftoken,
+            }
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json);
+                if (json['result'] === 0) {
+                    alert("{{filename}} successfully run")
+                }
+                else {
+                    alert("ERROR: {{filename}} did not successfully run")
+                }
             });
         }
     </script>
