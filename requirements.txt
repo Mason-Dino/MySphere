@@ -1,0 +1,2 @@
+filetype==1.2.0
+Django==5.1.5
