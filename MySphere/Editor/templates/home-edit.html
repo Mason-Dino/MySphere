@@ -7,6 +7,23 @@
     <link href="{% static 'home.css' %}" type="text/css" rel="stylesheet">
     <link href="{% static 'side.css' %}" type="text/css" rel="stylesheet">
     <title>Home</title>
+
+    <!-- CodeMirror Inputs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/material-ocean.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/shell/shell.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/hint/show-hint.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/hint/show-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/hint/javascript-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/hint/css-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/hint/html-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/hint/xml-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/edit/closetag.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/selection/active-line.min.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -50,7 +67,7 @@
         <h1>
             Editor
         </h1>
-        <textarea id="textarea" style="width: 75%; height: 75lvh;">
+        <textarea id="editor">
 
         </textarea>
         <br><br><br>
@@ -87,19 +104,27 @@
             document.location = String(document.location.href).replace("?refresh=true", "")
         }
 
-        document.getElementById('textarea').addEventListener('keydown', function(e) {
-        if (e.key == 'Tab') {
-            e.preventDefault();
-            var start = this.selectionStart;
-            var end = this.selectionEnd;
-
-            // set textarea value to: text before caret + tab + text after caret
-            this.value = this.value.substring(0, start) + "\t" + this.value.substring(end);
-
-            // put caret at right position again
-            this.selectionStart = this.selectionEnd = start + 1;
-        }
+        var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+            mode: "shell", // Supports HTML, CSS, JavaScript
+            theme: "material-ocean",
+            lineNumbers: true,
+            lineWrapping: true,
+            matchBrackets: true,
+            autoCloseBrackets: true,
+            autoCloseTags: true,
+            styleActiveLine: true,
+            dragDrop: true,
+            styleActiveLine: true,
+            electricChars: true,
+            tabSize: 4,
+            smartIndent: true,
+            indentWithTabs: true,
+            extraKeys: {
+                "Ctrl-Space": "autocomplete", // Enable autocomplete
+            }
         });
+
+        editor.setSize("75%", 300)
     </script>
 </body>
 </html>
