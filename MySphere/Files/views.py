@@ -252,6 +252,9 @@ def downloadTxt(request, path: str, file: str):
         
     return FileResponse(video, content_type='text')
 
+def viewMD(request, path: str, file: str):
+    pass
+
 
 def deleteFile(requests):
     logger = logging.getLogger("viewTXT")
