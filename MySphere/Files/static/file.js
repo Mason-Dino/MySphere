@@ -115,3 +115,39 @@ function uploadFileMenu(path) {
     })
     .catch(error => console.error("Error:", error));
 }
+
+/*
+function openFolderBox(path) {
+    let input = document.getElementById("folder-input-menu")
+    input.onchange = function () {
+        if (input.files.length > 0) {
+            uploadFolderMenu(path)
+
+            for (file of input.files) {
+                console.log(file)
+            }
+        }
+    }
+
+    input.click()
+}
+
+function uploadFolderMenu(path) {
+    const input = document.getElementById("folder-input-menu"); // <input type="file" multiple>
+    const formData = new FormData();
+    for (const file of input.files) {
+        formData.append("files[]", file); // Match the Django view's getlist('files[]')
+    }
+    formData.append("path", "/your/target/path");
+    formData.append("csrfmiddlewaretoken", csrftoken);
+
+    fetch("/upload/file-upload/", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(json => console.log(json))
+    .catch(err => console.error(err));
+
+}
+    */
