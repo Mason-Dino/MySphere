@@ -34,15 +34,22 @@ def home(requests):
         data[i]['name'] = result[i]['name']
         data[i]['id'] = result[i]['pm_id']
         data[i]['status'] = result[i]['pm2_env']['status']
-        data[i]['created'] = datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
         
-        uptime = (datetime.fromtimestamp(time.time()).astimezone(timezone) - datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone))
-        data[i]['uptime'] = f"{round(uptime.seconds/3600, 2)} hours"
+        if data[i]['status'] != 'errored':
+            data[i]['created'] = datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
         
-        #data[i]['uptime'] = datetime.fromtimestamp(result[i]['pm2_env']['pm_uptime']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
-        data[i]['restart'] = result[i]['pm2_env']['restart_time']
-        data[i]['location'] = str(result[i]['pm2_env']['PWD']).removeprefix('/home/mason-server/')
+            uptime = (datetime.fromtimestamp(time.time()).astimezone(timezone) - datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone))
+            data[i]['uptime'] = f"{round(uptime.seconds/3600, 2)} hours"
         
+            #data[i]['uptime'] = datetime.fromtimestamp(result[i]['pm2_env']['pm_uptime']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
+            data[i]['restart'] = result[i]['pm2_env']['restart_time']
+            data[i]['location'] = str(result[i]['pm2_env']['PWD']).removeprefix('/home/mason-server/')
+            
+        else:
+            data[i]['created'] = "DOWN"
+            data[i]['uptime'] = "DOWN"
+            data[i]['restart'] = "ERROR"
+            data[i]['location'] = str(result[i]['pm2_env']['PWD']).removeprefix('/home/mason-server/')
     
     
         

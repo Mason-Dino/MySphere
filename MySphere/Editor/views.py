@@ -98,12 +98,12 @@ def runFile(requests):
         data = json.loads((requests.body).decode("utf-8"))
         logger.error(f"{data}")
         
-        value = os.system(f"sh /home/mason-server/Editor/{data['filename']}")
-        logger.error(f"{value}")
+        #value = subprocess.call(f"source /home/mason-server/Editor/{data['filename']}")
+        subprocess.run(["bash", "-c", f"source /home/mason-server/Editor/{data['filename']}"])
         
         return JsonResponse({
             "code": 200,
-            "result": value
+            "result": 0
         })
     
     else:
