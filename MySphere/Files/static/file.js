@@ -41,3 +41,12 @@ function deleteFile(path, filename) {
             .catch(error => alert("Error:", error));
     }
 }
+
+function menu() {
+    if (document.getElementById("add-menu").style['display'] === "block") {
+        document.getElementById("add-menu").style = "display: none";
+    }
+    else {
+        document.getElementById("add-menu").style = "display: block"
+    }
+}

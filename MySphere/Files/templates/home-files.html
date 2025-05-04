@@ -62,8 +62,8 @@
             <svg class="back" onclick="back()" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
             Home
             <span style="float: right; margin-right: 20px;">
-                <svg class="back" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
-                <div class="add-menu" id="add-menu" style="display: block">
+                <svg id="menu-show" class="back" onclick="menu()" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+                <div class="add-menu" id="add-menu" style="display: none">
                     <span>
                         <svg class="back" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-320v-326L336-542l-56-58 200-200 200 200-56 58-104-104v326h-80ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg>
                         <a>Upload File</a>
@@ -209,6 +209,7 @@
             </a>
         </div>
     </div>
+    <script src="{% static 'file.js' %}"></script>
     <script>
         if ((document.location.href).endsWith("?refresh=true")) {
             document.location = String(document.location.href).replace("?refresh=true", "")
