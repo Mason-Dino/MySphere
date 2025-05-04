@@ -62,7 +62,8 @@ def home(request):
     context = {
         "files": serverFiles,
         "percent": percent,
-        "strPercent": strPercent
+        "strPercent": strPercent,
+        "path": "/home/mason-server/"
     }
 
     return HttpResponse(template.render(context=context, request=request))
