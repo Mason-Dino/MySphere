@@ -80,10 +80,11 @@
                         loc: {{item.location}}/
                     </h4>
                     <div class="process-buttons">
-                        <button class="process-work-button process-restart" onclick="restart('{{item.id}}')">Restart</button>
                         {% if item.status == 'stopped' %}
+                        <button class="process-work-button process-delete" onclick="deleteProcess('{{item.id}}')">Delete</button>
                         <button class="process-work-button process-start" onclick="start('{{item.id}}')">Start</button>
                         {% else %}
+                        <button class="process-work-button process-restart" onclick="restart('{{item.id}}')">Restart</button>
                         <button class="process-work-button process-stop" onclick="stop('{{item.id}}')">Stop</button>
                         {% endif %}
                     </div>

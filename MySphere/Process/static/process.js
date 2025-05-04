@@ -72,3 +72,22 @@ function start(pid) {
             location.reload();
         });
 }
+
+function deleteProcess(pid) {
+    fetch("https://mason-server.tailff82ee.ts.net/process/pm2/update/", {
+        method: "POST",
+        body: JSON.stringify({
+            task: "delete",
+            id: pid
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken,
+        }
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            console.log(json);
+            location.reload();
+        });
+}

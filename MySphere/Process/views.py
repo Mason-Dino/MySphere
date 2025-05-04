@@ -71,6 +71,9 @@ def pm2Update(requests):
         elif data['task'] == "restart":
             result = subprocess.run(["pm2", "restart", f"{int(data['id'])}"], capture_output=True, text=True)
             
+        elif data['task'] == "delete":
+            result = subprocess.run(["pm2", "delete", f"{int(data['id'])}"], capture_output=True, text=True)
+            
         elif data['task'] == "start":
             result = subprocess.run(["pm2", "start", f"{int(data['id'])}"], capture_output=True, text=True)
         
