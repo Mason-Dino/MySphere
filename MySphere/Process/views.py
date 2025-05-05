@@ -64,6 +64,9 @@ def home(requests):
 def machine(requests):
     template = loader.get_template("machine.html")
     
+    logger = logging.getLogger("machines")
+    logging.basicConfig(filename="viewTXT.log")
+    
     out = subprocess.run(["tailscale", "status"], capture_output=True, text=True)
 
     output = out.stdout.splitlines()
@@ -73,7 +76,7 @@ def machine(requests):
         
     for i in range(len(output)):
         output[i] = [item for item in output[i] if item != '']
-        output[i] = output[i][:2]
+        output[i] = output[i][:4]
         
         ping = subprocess.run(["tailscale", "ping", "--c", "1", "--timeout", "1s", f"{output[i][0]}"], capture_output=True, text=True)
         print(ping.stdout)
@@ -83,6 +86,19 @@ def machine(requests):
             
         else:
             output[i].append(False)
+            
+    for i in range(len(output)):
+        if output[i][1] == "mason" and output[i][3] == "linux":
+            output[i][3] = "computer"
+            
+        elif output[i][3] == "windows" or output[i][3] == "macOS":
+            output[i][3] = "computer"
+            
+        elif output[i][3] == "linux":
+            output[i][3] = "server"
+            
+        elif output[i][3] == "iOS":
+            output[i][3] = "phone"
             
     context = {
         "machines": output
