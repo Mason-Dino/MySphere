@@ -98,7 +98,6 @@ function uploadFileMenu(path) {
         alert("Please select a file before uploading.");
         return;
     }
-    
     formData.append("file", fileInput.files[0]); // Append file
     formData.append("csrfmiddlewaretoken", csrftoken); // CSRF token
     formData.append("path", path)
