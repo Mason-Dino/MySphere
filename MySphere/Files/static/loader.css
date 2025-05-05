@@ -15,9 +15,26 @@
     width: 3vw;
     height: 3vw;
     animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
+}
+    
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
+}
+
+.home-loader {
+    display: flex;
+    align-content: center;
+    align-self: center;
+    text-align: center;
+    align-items: center;
+
+    position: absolute;
+    bottom: 4.5vw;
+    right: 4.5vw;
+
+    width: 4.5vw; 
+    height: 4.5vw; 
+    background-color: var(--timeber-wolf);
+    border-radius: 100px;
+}
