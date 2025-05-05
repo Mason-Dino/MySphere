@@ -61,6 +61,21 @@ def home(requests):
     
     return HttpResponse(template.render(context=context, request=requests))
 
+def machine(requests):
+    template = loader.get_template("machine.html")
+    
+    out = subprocess.run(["tailscale", "status"], capture_output=True, text=True)
+
+    output = out.stdout.splitlines()
+
+    for i in range(len(output)):
+        output[i] = output[i].split(" ")
+        
+    for i in range(len(output)):
+        output[i] = [item for item in output[i] if item != '']
+    
+    return HttpResponse(template.render(request=requests))
+
 def pm2Update(requests):
     if requests.method == "POST":
         data = json.loads((requests.body).decode("utf-8"))
