@@ -73,8 +73,23 @@ def machine(requests):
         
     for i in range(len(output)):
         output[i] = [item for item in output[i] if item != '']
+        output[i] = output[i][:2]
+        
+        ping = subprocess.run(["tailscale", "ping", "--c", "1", "--timeout", "1s", f"{output[i][0]}"], capture_output=True, text=True)
+        print(ping.stdout)
+        
+        if ("local" in ping.stdout) or ("pong" in ping.stdout):
+            output[i].append(True)
+            
+        else:
+            output[i].append(False)
+            
+    context = {
+        "machines": output
+    }
     
-    return HttpResponse(template.render(request=requests))
+    
+    return HttpResponse(template.render(context=context, request=requests))
 
 def pm2Update(requests):
     if requests.method == "POST":

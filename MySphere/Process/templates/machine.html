@@ -38,7 +38,9 @@
         <h1>
             Machines
         </h1>
-        
+        {% for machine in machines %}
+            <p>{{machine.0}} {{machine.1}} {{machine.2}}</p>
+        {% endfor %}
         <br><br><br>
     </div>
     <script src="{% static 'process.js'%}"></script>
