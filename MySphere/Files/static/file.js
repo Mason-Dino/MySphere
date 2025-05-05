@@ -102,6 +102,9 @@ function uploadFileMenu(path) {
     formData.append("csrfmiddlewaretoken", csrftoken); // CSRF token
     formData.append("path", path)
 
+    document.getElementById("loader").style = "display: block;"
+    document.getElementById("add-menu").style = "display: none;"
+
     fetch("/upload/file-upload/", {  // Make sure this matches your Django URL
         method: "POST",
         body: formData,
@@ -110,7 +113,8 @@ function uploadFileMenu(path) {
     .then(json => {
         console.log(json);
         alert("File Uploaded");
-        document.location.href += '?refresh=true'
+        document.location.href += '?refresh=true';
+        document.getElementById("loader").style = "display: none;"
     })
     .catch(error => console.error("Error:", error));
 }
