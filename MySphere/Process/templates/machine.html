@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'home.css' %}" type="text/css" rel="stylesheet">
     <link href="{% static 'side.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static 'machine.css' %}" type="text/css" rel="stylesheet">
     <title>{{filename}}</title>
 </head>
 <body>
@@ -38,9 +39,22 @@
         <h1>
             Machines
         </h1>
-        {% for machine in machines %}
-            <p>{{machine.0}} {{machine.1}} {{machine.3}} {{machine.4}}</p>
-        {% endfor %}
+        <table>
+            <tr>
+                <th>Icon</th>
+                <th>IP Address</th>
+                <th>Device Name</th>
+                <th>Connected?</th>
+            </tr>
+            {% for machine in machines %}
+            <tr>
+                <td>{{machine.3}}</td>
+                <td>{{machine.0}}</td>
+                <td>{{machine.1}}</td>
+                <td>{{machine.4}}</td>
+            </tr>
+            {% endfor %}
+        </table>
         <br><br><br>
     </div>
     <script src="{% static 'process.js'%}"></script>
