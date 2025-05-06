@@ -42,6 +42,29 @@ function deleteFile(path, filename) {
     }
 }
 
+function deleteFolder(path, shortPath) {
+    if (confirm(`Do you want to delete ${shortPath} folder`)) {
+        fetch("https://mason-server.tailff82ee.ts.net/folder/delete-folder/", {
+            method: "POST",
+            body: JSON.stringify({
+                path: path
+            }),
+            headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken,
+            }
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            console.log(json);
+            var oldURL = document.referrer;
+            oldURL += "?refresh=true"
+
+            window.location.href = oldURL
+        })
+    }
+}
+
 function menu() {
     if (document.getElementById("add-menu").style['display'] === "block") {
         document.getElementById("add-menu").style = "display: none";
