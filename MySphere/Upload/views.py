@@ -69,26 +69,28 @@ def fileUpload(requests):
         logger.error("check1")
         logger.error(f"{requests.FILES}")
         
-        uploadFile = requests.FILES['file']
+        uploadFile = requests.FILES.getlist('files[]')
+        logger.error(f"{uploadFile}")
         
         logger.error(f"test: {requests.POST}")
         
-        filePath = os.path.join(requests.POST['path'], str(uploadFile.name).replace(" ", "-"))
+        for file in uploadFile:
+            filePath = os.path.join(requests.POST['path'], str(file.name).replace(" ", "-"))
 
-        logger.error(f"File uploading: {filePath}")
-        try:
-            file = open(filePath, 'x')
-            file.close()
-            
-        except:
-            pass
-    
-        logger.error("check 2")
-        with open(filePath, "wb") as f:
-            for chunk in uploadFile.chunks():
-                f.write(chunk)
+            logger.error(f"File uploading: {filePath}")
+            try:
+                makeFile = open(filePath, 'x')
+                makeFile.close()
                 
-        logger.error(f"File uploaded: {filePath}")
+            except:
+                pass
+        
+            logger.error(f"{filePath}")
+            with open(filePath, "wb") as f:
+                for chunk in file.chunks():
+                    f.write(chunk)
+                    
+            logger.error(f"File uploaded: {filePath}")
         
         
         return JsonResponse({

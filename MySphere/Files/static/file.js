@@ -121,7 +121,11 @@ function uploadFileMenu(path) {
         alert("Please select a file before uploading.");
         return;
     }
-    formData.append("file", fileInput.files[0]); // Append file
+
+    for (const file of fileInput.files) {
+        formData.append("files[]", file); // Match the Django view's getlist('files[]')
+    }
+    
     formData.append("csrfmiddlewaretoken", csrftoken); // CSRF token
     formData.append("path", path)
 
