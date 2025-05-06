@@ -80,6 +80,10 @@ def directory(request, path: str):
     directory = f"{root}{path}/"
 
     files = glob.glob(f"{directory}*")
+    
+    diskUsage = psutil.disk_usage('/')
+    percent = diskUsage.percent
+    strPercent = str(int(percent))
 
     serverFiles = []
             
@@ -112,7 +116,8 @@ def directory(request, path: str):
     context = {
         "files": serverFiles,
         "dir": directory,
-        "dir_short": directory.removeprefix(root)
+        "dir_short": directory.removeprefix(root),
+        "strPercent": strPercent
     }
 
     
