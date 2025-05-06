@@ -11,15 +11,19 @@
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
+    color: var(--space-cadet);
     width: 60%;
 }
 
 td, th {
-    border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #CECABE;
+}
+
+tr:hover {
+    background-color: #BFBBAF;
 }
