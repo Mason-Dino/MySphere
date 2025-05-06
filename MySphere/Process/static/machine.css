@@ -1,7 +1,17 @@
+:root {
+    --crimson: #d7263dff;
+    --giants-orange: #f46036ff;
+    --space-cadet: #2e294eff;
+    --persian-green: #1b998bff;
+    --vivid-cerulean: #00A9FF;
+    --timeber-wolf: #DAD6CB;
+    --ash-grey: #C8D3CF;
+}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 60%;
 }
 
 td, th {
