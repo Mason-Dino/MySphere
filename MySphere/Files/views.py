@@ -263,7 +263,7 @@ def viewMD(request, path: str, file: str):
 
 
 def deleteFile(requests):
-    logger = logging.getLogger("viewTXT")
+    logger = logging.getLogger("delete-file")
     logging.basicConfig(filename="viewTXT.log")
     
     if requests.method == "POST":
@@ -281,3 +281,38 @@ def deleteFile(requests):
     
     else:
         return HttpResponse("Only Post Request")
+    
+def renameFile(requests):
+    logger = logging.getLogger("rename-file")
+    logging.basicConfig(filename="viewTXT.log")
+    
+    if requests.method == "POST":
+        data = json.loads((requests.body).decode("utf-8"))
+        logger.error(f"Output: {data}")
+        
+        path = str(data["path"]).replace(".", "/")
+        file = str(data["file"])
+        newName = str(data["newName"])
+        fileExtension = f".{file.split('.')[1]}"
+        
+        exists = os.path.exists(os.path.join(path, file))
+        
+        if exists == True:
+            logger.error("File Exists")
+            
+            original = os.path.join(os.path.join(path, file))
+            logger.error(f"{os.path.join(path, (newName + fileExtension))}")
+            os.rename(original, os.path.join(path, (newName + fileExtension)))
+            
+            logger.error("File Renamed")
+            
+            return JsonResponse({
+                "result": 200,
+                "message": "File renamed"
+            })
+        
+        else:
+            return JsonResponse({
+                "result": 403,
+                "message": "File does not exists"
+            })
