@@ -22,6 +22,7 @@ def home(request):
     directory = "/home/mason-server/"
 
     files = glob.glob(f"{directory}*")
+    files = sorted(files)
 
     serverFiles = []
     
@@ -80,6 +81,7 @@ def directory(request, path: str):
     directory = f"{root}{path}/"
 
     files = glob.glob(f"{directory}*")
+    files = sorted(files)
     
     diskUsage = psutil.disk_usage('/')
     percent = diskUsage.percent
