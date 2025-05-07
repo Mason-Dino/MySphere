@@ -65,6 +65,33 @@ function deleteFolder(path, shortPath) {
     }
 }
 
+function renameFile(path, filename) {
+    console.log(path, filename)
+
+    newName = prompt(`What is the new name for ${filename}`)
+
+    fetch("https://mason-server.tailff82ee.ts.net/files/rename/", {
+        method: "POST",
+        body: JSON.stringify({
+            path: path,
+            file: filename,
+            newName: newName
+        }),
+        headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        'X-CSRFToken': csrftoken,
+        }
+    })
+    .then((response) => response.json())
+    .then((json) => {
+        console.log(json);
+        var oldURL = document.referrer;
+        oldURL += "?refresh=true"
+
+        window.location.href = oldURL
+    })
+}
+
 function menu() {
     if (document.getElementById("add-menu").style['display'] === "block") {
         document.getElementById("add-menu").style = "display: none";
