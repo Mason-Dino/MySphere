@@ -38,8 +38,10 @@ def home(requests):
         if data[i]['status'] != 'errored':
             data[i]['created'] = datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
         
+            logger.error(f"{datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone)}")
             uptime = (datetime.fromtimestamp(time.time()).astimezone(timezone) - datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone))
-            data[i]['uptime'] = f"{round(uptime.seconds/3600, 2)} hours"
+            logger.error(f"{uptime}")
+            data[i]['uptime'] = f"{round(uptime.seconds/3600 + (uptime.days * 24), 2)} hours"
         
             #data[i]['uptime'] = datetime.fromtimestamp(result[i]['pm2_env']['pm_uptime']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')
             data[i]['restart'] = result[i]['pm2_env']['restart_time']
