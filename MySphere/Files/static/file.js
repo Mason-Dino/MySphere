@@ -153,7 +153,7 @@ function uploadFileMenu(path) {
         formData.append("files[]", file); // Match the Django view's getlist('files[]')
     }
     
-    formData.append("csrfmiddlewaretoken", csrftoken); // CSRF token
+    formData.append("csrfmiddlewaretoken", getCookie('csrftoken')); // CSRF token
     formData.append("path", path)
 
     document.getElementById("loader").style = "display: block;"
