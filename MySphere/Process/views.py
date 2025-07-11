@@ -75,32 +75,48 @@ def machine(requests):
 
     for i in range(len(output)):
         output[i] = output[i].split(" ")
+
+    badIndex = 0
         
     for i in range(len(output)):
-        output[i] = [item for item in output[i] if item != '']
-        output[i] = output[i][:4]
-        
-        ping = subprocess.run(["tailscale", "ping", "--c", "1", "--timeout", "1s", f"{output[i][0]}"], capture_output=True, text=True)
-        print(ping.stdout)
-        
-        if ("local" in ping.stdout) or ("pong" in ping.stdout):
-            output[i].append(True)
+        try:
+            output[i] = [item for item in output[i] if item != '']
+            output[i] = output[i][:4]
+            logger.error(f"{output}")
             
-        else:
-            output[i].append(False)
+            ping = subprocess.run(["tailscale", "ping", "--c", "1", "--timeout", "1s", f"{output[i][0]}"], capture_output=True, text=True)
+            logger.error(ping.stdout)
+            logger.error(badIndex)
+            
+            if ("local" in ping.stdout) or ("pong" in ping.stdout):
+                output[i].append(True)
+                
+            else:
+                output[i].append(False)
+
+            badIndex += 1
+        except:
+            print("Failed")
             
     for i in range(len(output)):
-        if output[i][1] == "mason" and output[i][3] == "linux":
-            output[i][3] = "computer"
-            
-        elif output[i][3] == "windows" or output[i][3] == "macOS":
-            output[i][3] = "computer"
-            
-        elif output[i][3] == "linux":
-            output[i][3] = "server"
-            
-        elif output[i][3] == "iOS":
-            output[i][3] = "phone"
+        try:
+            if output[i][1] == "mason" and output[i][3] == "linux":
+                output[i][3] = "computer"
+                
+            elif output[i][3] == "windows" or output[i][3] == "macOS":
+                output[i][3] = "computer"
+                
+            elif output[i][3] == "linux":
+                output[i][3] = "server"
+                
+            elif output[i][3] == "iOS":
+                output[i][3] = "phone"
+        except: 
+            pass
+
+    badIndex -= 1
+
+    output = output[:badIndex]
             
     context = {
         "machines": output
