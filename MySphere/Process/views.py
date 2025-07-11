@@ -117,6 +117,7 @@ def machine(requests):
     badIndex -= 1
 
     output = output[:badIndex]
+    print("hello world")
             
     context = {
         "machines": output
