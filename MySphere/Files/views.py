@@ -6,6 +6,8 @@ from django.template import loader
 import os
 import glob
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 import logging
 import filetype
 import json
@@ -13,6 +15,7 @@ import psutil
 
 # Create your views here.
 
+@ensure_csrf_cookie
 def home(request):
     logger = logging.getLogger("home")
     logging.basicConfig(filename="viewTXT.log")
@@ -69,6 +72,7 @@ def home(request):
 
     return HttpResponse(template.render(context=context, request=request))
 
+@ensure_csrf_cookie
 def directory(request, path: str):
     template = loader.get_template('dir.html')
     logger = logging.getLogger("directory")
@@ -125,6 +129,7 @@ def directory(request, path: str):
     
     return HttpResponse(template.render(context=context, request=request))
 
+@ensure_csrf_cookie
 def viewTXT(request, path: str, file: str):    
     logger = logging.getLogger("viewTXT")
     logging.basicConfig(filename="viewTXT.log")
@@ -156,6 +161,7 @@ def viewTXT(request, path: str, file: str):
     
     return (HttpResponse(template.render(context=context, request=request)))
 
+@ensure_csrf_cookie
 def viewPDF(request, path: str, file: str):
     template = loader.get_template("view-pdf.html")
     
@@ -168,6 +174,7 @@ def viewPDF(request, path: str, file: str):
     
     return HttpResponse(template.render(context=context, request=request))
 
+@ensure_csrf_cookie
 def viewMovie(request, path: str, file: str):
     template = loader.get_template("view-movie.html")
     
@@ -180,6 +187,7 @@ def viewMovie(request, path: str, file: str):
     
     return HttpResponse(template.render(context=context, request=request))
 
+@ensure_csrf_cookie
 def viewAudio(request, path: str, file: str):
     template = loader.get_template("view-audio.html")
     
@@ -192,6 +200,7 @@ def viewAudio(request, path: str, file: str):
     
     return HttpResponse(template.render(context=context, request=request))
 
+@ensure_csrf_cookie
 def viewImg(request, path:str, file: str):
     template = loader.get_template("view-img.html")
     
@@ -204,6 +213,7 @@ def viewImg(request, path:str, file: str):
     
     return HttpResponse(template.render(context=context, request=request))
 
+@ensure_csrf_cookie
 def viewOther(request, path:str, file: str):
     template = loader.get_template("view-other.html")
     
@@ -216,18 +226,21 @@ def viewOther(request, path:str, file: str):
     
     return HttpResponse(template.render(context=context, request=request))
 
+@ensure_csrf_cookie
 def playMovie(request, path: str, file: str):
     path = path.replace(".", "/")
     video = open(f"{path}{file}", 'rb')
         
     return FileResponse(video, content_type='video/mp4')
 
+@ensure_csrf_cookie
 def playAudio(request, path: str, file: str):
     path = path.replace(".", "/")
     audio = open(f"{path}{file}", "rb")
     
     return FileResponse(audio, content_type='audio/mpeg')
 
+@ensure_csrf_cookie
 def showImg(request, path: str, file: str):
     path = path.replace(".", "/")
     img = open(f"{path}{file}", "rb")
@@ -236,6 +249,7 @@ def showImg(request, path: str, file: str):
     
     return FileResponse(img, content_type=kind)
 
+@ensure_csrf_cookie
 def showOther(request, path: str, file: str):
     path = path.replace(".", "/")
     img = open(f"{path}{file}", "rb")
@@ -244,6 +258,7 @@ def showOther(request, path: str, file: str):
     
     return FileResponse(img, content_type=kind)
 
+@ensure_csrf_cookie
 def showPDF(request, path: str, file: str):
     path = path.replace(".", "/")
     pdf = open(f"{path}{file}", "rb")
@@ -252,7 +267,7 @@ def showPDF(request, path: str, file: str):
     
     return FileResponse(pdf, content_type=kind)
 
-
+@ensure_csrf_cookie
 def downloadTxt(request, path: str, file: str):
     path = path.replace(".", "/")
     
@@ -263,7 +278,7 @@ def downloadTxt(request, path: str, file: str):
 def viewMD(request, path: str, file: str):
     pass
 
-
+@ensure_csrf_cookie
 def deleteFile(requests):
     logger = logging.getLogger("delete-file")
     logging.basicConfig(filename="viewTXT.log")
@@ -283,7 +298,8 @@ def deleteFile(requests):
     
     else:
         return HttpResponse("Only Post Request")
-    
+
+@ensure_csrf_cookie
 def renameFile(requests):
     logger = logging.getLogger("rename-file")
     logging.basicConfig(filename="viewTXT.log")

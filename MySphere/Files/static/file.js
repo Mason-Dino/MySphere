@@ -112,13 +112,14 @@ function makeFolderMenu(path) {
     
     fetch("https://mason-server.tailff82ee.ts.net/folder/make-folder/", {
         method: "POST",
+        credentials: 'include',
         body: JSON.stringify({
             path: path,
             name: folder
         }),
         headers: {
             "Content-type": "application/json; charset=UTF-8",
-            'X-CSRFToken': csrftoken,
+            'X-CSRFToken': getCookie('csrftoken'),
         }
         })
         .then((response) => response.json())
