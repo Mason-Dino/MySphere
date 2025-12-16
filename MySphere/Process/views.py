@@ -75,6 +75,8 @@ def machine(requests):
 
     for i in range(len(output)):
         output[i] = output[i].split(" ")
+        
+    logger.error(f"Before: {output}")
 
     badIndex = 0
         
@@ -82,9 +84,9 @@ def machine(requests):
         try:
             output[i] = [item for item in output[i] if item != '']
             output[i] = output[i][:4]
-            logger.error(f"{output}")
+            logger.error(f"Device {i}: {output[i]}")
             
-            ping = subprocess.run(["tailscale", "ping", "--c", "1", "--timeout", "1s", f"{output[i][0]}"], capture_output=True, text=True)
+            ping = subprocess.run(["tailscale", "ping", "--c", "1", "--timeout", "2s", f"{output[i][0]}"], capture_output=True, text=True)
             logger.error(ping.stdout)
             logger.error(badIndex)
             
@@ -95,8 +97,10 @@ def machine(requests):
                 output[i].append(False)
 
             badIndex += 1
+            logger.error(f"Device {i}: {output[i]}")
         except:
             print("Failed")
+            output[i].append(False)
             
     for i in range(len(output)):
         try:
@@ -116,9 +120,8 @@ def machine(requests):
 
     badIndex -= 1
 
-    output = output[:badIndex]
     print("hello world")
-            
+    logger.error(f"Total Output: {output}")
     context = {
         "machines": output
     }
