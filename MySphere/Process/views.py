@@ -54,7 +54,7 @@ def home(requests_web):
             data[i]['restart'] = "ERROR"
             data[i]['location'] = str(result[i]['pm2_env']['PWD']).removeprefix('/home/mason-server/')
     
-    dinoStatus = requests.get("https://dino-dev.tailff82ee.ts.net/status/pm2-status")
+    dinoStatus = requests.get("https://dino-dev.tailff82ee.ts.net/status/pm2/status")
     dinoStatus = json.loads(dinoStatus.content)
 
     for item in dinoStatus:
@@ -134,15 +134,16 @@ def machine(requests):
     
     return HttpResponse(template.render(context=context, request=requests))
 
-def pm2Update(requests):
-    if requests.method == "POST":
+def pm2Update(requestsWeb):
+    if requestsWeb.method == "POST":
         logger = logging.getLogger("process-update")
         logging.basicConfig(filename="viewTXT.log")
 
-        data = json.loads((requests.body).decode("utf-8"))
+        data = json.loads((requestsWeb.body).decode("utf-8"))
         
         if "-dino" in data['id']:
             logger.error(f"DINO: {data}")
+            requests.post("https://dino-dev.tailff82ee.ts.net/status/pm2/update", json=data)
 
             return JsonResponse({
                 "code": 200
