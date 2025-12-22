@@ -13,10 +13,11 @@ import math
 import subprocess
 import json
 import pytz
+import requests
 
 
 # Create your views here.
-def home(requests):
+def home(requests_web):
     template = loader.get_template("home-process.html")
     logger = logging.getLogger("home-process")
     logging.basicConfig(filename="viewTXT.log")
@@ -53,7 +54,11 @@ def home(requests):
             data[i]['restart'] = "ERROR"
             data[i]['location'] = str(result[i]['pm2_env']['PWD']).removeprefix('/home/mason-server/')
     
-    
+    dinoStatus = requests.get("https://dino-dev.tailff82ee.ts.net/status/pm2-status")
+    dinoStatus = json.loads(dinoStatus.content)
+
+    for item in dinoStatus:
+        data.append(item)
         
     logger.error(f"{data}")
     
@@ -61,7 +66,7 @@ def home(requests):
         "data": data
     }
     
-    return HttpResponse(template.render(context=context, request=requests))
+    return HttpResponse(template.render(context=context, request=requests_web))
 
 def machine(requests):
     template = loader.get_template("machine.html")
