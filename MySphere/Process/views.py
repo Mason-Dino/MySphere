@@ -136,29 +136,40 @@ def machine(requests):
 
 def pm2Update(requests):
     if requests.method == "POST":
+        logger = logging.getLogger("process-update")
+        logging.basicConfig(filename="viewTXT.log")
+
         data = json.loads((requests.body).decode("utf-8"))
         
-        if data['task'] == "stop":
-            result = subprocess.run(["pm2", "stop", f"{int(data['id'])}"], capture_output=True, text=True)
-        
-        elif data['task'] == "restart":
-            result = subprocess.run(["pm2", "restart", f"{int(data['id'])}"], capture_output=True, text=True)
-            
-        elif data['task'] == "delete":
-            result = subprocess.run(["pm2", "delete", f"{int(data['id'])}"], capture_output=True, text=True)
-            
-        elif data['task'] == "start":
-            result = subprocess.run(["pm2", "start", f"{int(data['id'])}"], capture_output=True, text=True)
-        
-        else:
+        if "-dino" in data['id']:
+            logger.error(f"DINO: {data}")
+
             return JsonResponse({
-                "code": 404,
-                "message": "unknown task"
+                "code": 200
             })
-        
-        return JsonResponse({
-            "code": 200
-        })
+
+        else:
+            if data['task'] == "stop":
+                result = subprocess.run(["pm2", "stop", f"{int(data['id'])}"], capture_output=True, text=True)
+            
+            elif data['task'] == "restart":
+                result = subprocess.run(["pm2", "restart", f"{int(data['id'])}"], capture_output=True, text=True)
+                
+            elif data['task'] == "delete":
+                result = subprocess.run(["pm2", "delete", f"{int(data['id'])}"], capture_output=True, text=True)
+                
+            elif data['task'] == "start":
+                result = subprocess.run(["pm2", "start", f"{int(data['id'])}"], capture_output=True, text=True)
+            
+            else:
+                return JsonResponse({
+                    "code": 404,
+                    "message": "unknown task"
+                })
+            
+            return JsonResponse({
+                "code": 200
+            })
         
     else:
         return HttpResponse("only post")
