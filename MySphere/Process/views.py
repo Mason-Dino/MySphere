@@ -35,6 +35,7 @@ def home(requests_web):
         data[i]['name'] = result[i]['name']
         data[i]['id'] = result[i]['pm_id']
         data[i]['status'] = result[i]['pm2_env']['status']
+        data[i]['server'] = "Mason-Server"
         
         if data[i]['status'] != 'errored':
             data[i]['created'] = datetime.fromtimestamp(result[i]['pm2_env']['created_at']/1000).astimezone(timezone).strftime('%m/%d %I:%M %p')

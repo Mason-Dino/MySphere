@@ -72,6 +72,9 @@
                     <h4>
                         loc: {{item.location}}/
                     </h4>
+                    <h4>
+                        Server: {{item.server}}
+                    </h4>
                     <div class="process-buttons">
                         {% if item.status == 'stopped' %}
                         <button class="process-work-button process-delete" onclick="deleteProcess('{{item.id}}')">Delete</button>
