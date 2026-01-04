@@ -60,6 +60,12 @@ def home(requests_web):
 
     for item in dinoStatus:
         data.append(item)
+
+    tinyStatus = requests.get("https://tiny-think.tailff82ee.ts.net/status/pm2/status")
+    tinyStatus = json.loads(tinyStatus.content)
+
+    for item in tinyStatus:
+        data.append(item)
         
     logger.error(f"{data}")
     
@@ -145,6 +151,14 @@ def pm2Update(requestsWeb):
         if "-dino" in data['id']:
             logger.error(f"DINO: {data}")
             requests.post("https://dino-dev.tailff82ee.ts.net/status/pm2/update", json=data)
+
+            return JsonResponse({
+                "code": 200
+            })
+
+        elif "-tiny" in data['id']:
+            logger.error(f"TINY: {data}")
+            requests.post("https://tiny-think.tailff82ee.ts.net/status/pm2/update", json=data)
 
             return JsonResponse({
                 "code": 200
