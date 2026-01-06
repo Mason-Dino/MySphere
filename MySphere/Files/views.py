@@ -282,12 +282,17 @@ def downloadTxt(request, path: str, file: str):
     return FileResponse(video, content_type='text')
 
 @ensure_csrf_cookie
-def viewMD(request, path: str, file: str):
+def showMD(request, path: str, file: str):
     template = loader.get_template("view-md.html")
+
     
     path = path.replace(".", "/")
+
+    with open(f"{path}{file}", "r") as f:
+        data = f.read()
         
     context = {
+        "data": data,
         "filename": file,
         "path": path.replace("/", ".")
     }
