@@ -97,7 +97,7 @@ def directory(request, path: str):
         if os.path.isdir(file):
             serverFiles.append([file, "folder", file.removeprefix(directory), file.removeprefix(root).replace("/", ".")])
             
-        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json") or file.endswith(".sh"):
+        elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json") or file.endswith(".sh") or file.endswith(".asm"):
             serverFiles.append([file, "code", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".txt") or filetype.guess_mime(f"{file}") == "text/plain":
