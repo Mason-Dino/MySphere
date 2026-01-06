@@ -52,6 +52,7 @@ body {
 .code-color {background-color: var(--crimson);}
 .movie-color {background-color: var(--persian-green);}
 .audio-color {background-color: var(--persian-green);}
+.md-color {background-color: var(--persian-green);}
 .img-color {background-color: var(--vivid-cerulean);}
 .other-color {background-color: var(--space-cadet);}
 

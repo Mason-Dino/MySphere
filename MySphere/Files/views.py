@@ -43,6 +43,9 @@ def home(request):
             
         elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json") or file.endswith(".sh") or file.endswith(".asm"):
             serverFiles.append([file, "code", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
+
+        elif file.endswith(".md"):
+            serverFiles.append([file, "md", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".txt") or filetype.guess_mime(f"{file}") == "text/plain":
             serverFiles.append([file, "txt", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
@@ -99,6 +102,9 @@ def directory(request, path: str):
             
         elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json") or file.endswith(".sh") or file.endswith(".asm"):
             serverFiles.append([file, "code", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
+
+        elif file.endswith(".md"):
+            serverFiles.append([file, "md", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".txt") or filetype.guess_mime(f"{file}") == "text/plain":
             serverFiles.append([file, "txt", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
@@ -275,8 +281,18 @@ def downloadTxt(request, path: str, file: str):
         
     return FileResponse(video, content_type='text')
 
+@ensure_csrf_cookie
 def viewMD(request, path: str, file: str):
-    pass
+    template = loader.get_template("view-md.html")
+    
+    path = path.replace(".", "/")
+        
+    context = {
+        "filename": file,
+        "path": path.replace("/", ".")
+    }
+    
+    return HttpResponse(template.render(context=context, request=request))
 
 @ensure_csrf_cookie
 def deleteFile(requests):
