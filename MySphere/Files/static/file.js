@@ -67,8 +67,18 @@ function deleteFolder(path, shortPath) {
 
 function renameFile(path, filename) {
     console.log(path, filename)
+    
 
     newName = prompt(`What is the new name for ${filename}`)
+    
+    dotIndex = filename.indexOf('.')
+    fileExt = filename.slice(dotIndex + 1);
+
+    url = new URL(window.location.href);
+    url.pathname = url.pathname.substring(0, url.pathname.lastIndexOf("/") + 1);
+    url = url.toString()
+
+    url = url += `${newName}.${fileExt}`
 
     fetch("https://mason-server.tailff82ee.ts.net/files/rename/", {
         method: "POST",
@@ -85,10 +95,13 @@ function renameFile(path, filename) {
     .then((response) => response.json())
     .then((json) => {
         console.log(json);
-        var oldURL = document.referrer;
-        oldURL += "?refresh=true"
+        console.log(window.location.href)
+        window.location.href = url + "?refresh=true"
+        //window.location.href += "?refresh=true"
+        //var oldURL = document.referrer;
+        //oldURL += "?refresh=true"
 
-        window.location.href = oldURL
+        //window.location.href = oldURL
     })
 }
 
