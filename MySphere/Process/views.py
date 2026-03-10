@@ -55,17 +55,25 @@ def home(requests_web):
             data[i]['restart'] = "ERROR"
             data[i]['location'] = str(result[i]['pm2_env']['PWD']).removeprefix('/home/mason-server/')
     
-    dinoStatus = requests.get("https://dino-dev.tailff82ee.ts.net/status/pm2/status")
-    dinoStatus = json.loads(dinoStatus.content)
+    try:
+        dinoStatus = requests.get("https://dino-dev.tailff82ee.ts.net/status/pm2/status")
+        dinoStatus = json.loads(dinoStatus.content)
 
-    for item in dinoStatus:
-        data.append(item)
+        for item in dinoStatus:
+            data.append(item)
+        
+    except:
+        pass
 
-    tinyStatus = requests.get("https://tiny-think.tailff82ee.ts.net/status/pm2/status")
-    tinyStatus = json.loads(tinyStatus.content)
+    try:
+        tinyStatus = requests.get("https://tiny-think.tailff82ee.ts.net/status/pm2/status")
+        tinyStatus = json.loads(tinyStatus.content)
 
-    for item in tinyStatus:
-        data.append(item)
+        for item in tinyStatus:
+            data.append(item)
+
+    except:
+        pass
         
     logger.error(f"{data}")
     
