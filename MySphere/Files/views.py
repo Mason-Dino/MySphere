@@ -95,10 +95,12 @@ def directory(request, path: str):
     strPercent = str(int(percent))
 
     serverFiles = []
+    haveSubfolder = False
             
     for file in files:
         if os.path.isdir(file):
             serverFiles.append([file, "folder", file.removeprefix(directory), file.removeprefix(root).replace("/", ".")])
+            haveSubfolder = True
             
         elif file.endswith(".py") or file.endswith(".c") or file.endswith(".html") or file.endswith(".c") or file.endswith(".json") or file.endswith(".sh") or file.endswith(".asm"):
             serverFiles.append([file, "code", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
@@ -129,7 +131,8 @@ def directory(request, path: str):
         "files": serverFiles,
         "dir": directory,
         "dir_short": directory.removeprefix(root),
-        "strPercent": strPercent
+        "strPercent": strPercent,
+        "haveSubFolder": haveSubfolder
     }
 
     
