@@ -105,6 +105,44 @@ function renameFile(path, filename) {
     })
 }
 
+async function downloadFolder(folder) {
+    console.log(folder)
+
+    res = await fetch("https://mason-server.tailff82ee.ts.net/files/list-folder-files/", {
+        method: "POST",
+        body: JSON.stringify({
+            folder: folder,
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'X-CSRFToken': csrftoken,
+        }
+    });
+
+    files = await res.json();
+
+    console.log(files)
+
+    for (const file of files.files) {
+
+        const a = document.createElement("a");
+
+        cleaned = file.url.replace("/download/file/", "")
+
+        // Your Django download endpoint
+        a.href = `https://mason-server.tailff82ee.ts.net/files/download/file/${cleaned}`;
+
+        a.download = file.name;
+
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        // Small delay so browser doesn't block downloads
+        await new Promise(r => setTimeout(r, 300));
+    }
+}
+
 function menu() {
     if (document.getElementById("add-menu").style['display'] === "block") {
         document.getElementById("add-menu").style = "display: none";

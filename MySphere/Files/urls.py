@@ -22,5 +22,7 @@ urlpatterns = [
     path('other/show/<str:path>/<str:file>', views.showOther, name="other-view"),
     path('delete/', views.deleteFile, name="delete-file"),
     path('rename/', views.renameFile, name="rename-file"),
+    path('list-folder-files/', views.listFolderFiles, name="list-folder-files"),
+    path("download/file/<path:filepath>/", views.downloadFileFromFolder, name="folder-download"),
     path('home/md/<str:path>/<str:file>', views.showMD, name="md-view")
 ]

@@ -358,3 +358,53 @@ def renameFile(requests):
                 "result": 403,
                 "message": "File does not exists"
             })
+
+@ensure_csrf_cookie
+def listFolderFiles(requests):
+    logger = logging.getLogger("list-folder-files")
+    logging.basicConfig(filename="viewTXT.log")
+
+    if requests.method == "POST":
+        data = json.loads((requests.body).decode("utf-8"))
+        logger.error(f"Output: {data}")
+
+        folder = data.get("folder")
+        #folderPath = os.path.join(BASE_PATH, folder)
+
+        
+        files = []
+        
+        for file in os.listdir(folder):
+            full_path = os.path.join(folder, file)
+
+            if os.path.isfile(full_path):
+                files.append({
+                    "name": file,
+                    "url": f"/download/file/{str(str(folder).removesuffix('/')).removeprefix('/')}/{file}"
+                })
+
+        logger.error(f"Files found: {files}")
+
+        return JsonResponse({
+            "folder": folder,
+            "files": files
+        })
+
+@ensure_csrf_cookie
+def downloadFileFromFolder(requests, filepath):
+    logger = logging.getLogger("download-file-folder")
+    logging.basicConfig(filename="viewTXT.log")
+
+    full_path = os.path.join("/", filepath)
+    logger.error(f"The file path: {full_path}")
+
+    if not os.path.isfile(full_path):
+        raise HttpResponse(404)
+
+    filename = os.path.basename(full_path)
+
+    return FileResponse(
+        open(full_path, "rb"),
+        as_attachment=True,
+        filename=filename
+    )
