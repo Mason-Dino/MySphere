@@ -56,7 +56,7 @@ def home(request):
         elif file.endswith("mp4") or file.endswith(".mov"):
             serverFiles.append([file, "movie", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
-        elif file.endswith(".mp3"):
+        elif file.endswith(".mp3") or file.endswith(".m4a"):
             serverFiles.append([file, "audio", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg") or file.endswith(".heif") or file.endswith(".svg"):
@@ -117,7 +117,7 @@ def directory(request, path: str):
         elif file.endswith("mp4") or file.endswith(".mov"):
             serverFiles.append([file, "movie", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
-        elif file.endswith(".mp3"):
+        elif file.endswith(".mp3") or file.endswith(".m4a"):
             serverFiles.append([file, "audio", file.removeprefix(directory), file.removesuffix(file.removeprefix(directory)).replace("/", ".")])
             
         elif file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg") or file.endswith(".heif") or file.endswith(".svg"):
