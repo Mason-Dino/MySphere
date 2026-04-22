@@ -66,7 +66,7 @@ def home(requests_web):
         pass
 
     try:
-        tinyStatus = requests.get("https://tiny-think.tailff82ee.ts.net/status/pm2/status")
+        tinyStatus = requests.get("https://dino-core.tailff82ee.ts.net/status/pm2/status")
         tinyStatus = json.loads(tinyStatus.content)
 
         for item in tinyStatus:
